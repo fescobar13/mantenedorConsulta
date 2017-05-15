@@ -19,7 +19,7 @@ if( isset($_POST['request']) && $_POST['request'] !='' ) {
 	//Clase que valida los datos de la peticion
 	if( $_POST['request'] == 'agregar' ){
 
-		$paciente = new Paciente();
+		$paciente = new Paciente(); 
 		$paciente->set("nombre",$_POST['nombre']);
 		$paciente->set("edad",$_POST['edad']);
 		$paciente->set("apellido",$_POST['apellido']);

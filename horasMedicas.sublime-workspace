@@ -269,6 +269,7 @@
 	],
 	"file_history":
 	[
+		"/C/xampp/htdocs/gitLab.txt",
 		"/C/xampp/htdocs/AppHoraMedica/vendor/js/general.js",
 		"/C/xampp/htdocs/AppHoraMedica/vendor/estilo/estilo.css",
 		"/C/xampp/htdocs/AppHoraMedica/Views/agregarTerapeuta.php",
@@ -395,8 +396,7 @@
 		"/C/xampp/htdocs/miLaravel/routes/channels.php",
 		"/C/xampp/htdocs/miLaravel/routes/console.php",
 		"/C/xampp/htdocs/CodeIgniter/application/config/autoload.php",
-		"/C/xampp/htdocs/CodeIgniter/application/config/config.php",
-		"/C/xampp/htdocs/CodeIgniter/application/config/database.php"
+		"/C/xampp/htdocs/CodeIgniter/application/config/config.php"
 	],
 	"find":
 	{

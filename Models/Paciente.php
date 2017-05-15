@@ -13,6 +13,7 @@ class Paciente
   private $edad;
   private $telefono;
   private $email;
+  private $estado;
 
   function __construct(){
     $this->conn = new Conexion();
@@ -35,16 +36,30 @@ class Paciente
     $result = $this->conn->muestra($sql);
 
     if( !($result->num_rows > 0) ){
-      $sql = "INSERT INTO pacientes (rut, nombre, apellido, edad, telefono, email)
+      $sql = "INSERT INTO pacientes (rut, nombre, apellido, edad, telefono, email, estado)
         VALUES ('{$this->rut}','{$this->nombre}','{$this->apellido}',
-                '{$this->edad}','{$this->telefono}','{$this->email}')";
+                '{$this->edad}','{$this->telefono}','{$this->email}',1)";
 
       $this->conn->modifica($sql);
       return "agrego";
 
-    }else{
+    }else{ // Si el paciente existe pero esta deshabilitado
+      $row = $result->fetch_array(MYSQLI_ASSOC);
+      if( $row['estado'] == 0 ){
+        habilitarPaciente($row['id']);
+      }
       return "existe";
     }
+  }
+
+  public function habilitarPaciente($id){
+    $sql ="UPDATE pacientes set estado =1 where id =".$id."";
+    $this->conn->modifica($sql);
+  }
+
+  public function deshabilitarPaciente($id){
+    $sql ="UPDATE pacientes set estado =1 where id =".$id."";
+    $this->conn->modifica($sql);
   }
 
   public function eliminar(){
