@@ -1,0 +1,681 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"terapue",
+				"Terapeuta"
+			],
+			[
+				"Paciente",
+				"PacienteController"
+			],
+			[
+				"sesison",
+				"session_start"
+			],
+			[
+				"mod",
+				"modificarPaciente"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"th",
+				"th\tTag"
+			],
+			[
+				"valida",
+				"validaForm"
+			],
+			[
+				"marin",
+				"margin-right"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"text",
+				"text-align-last"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"Te",
+				"Terapeuta"
+			],
+			[
+				"Tera",
+				"TerapeutasController"
+			],
+			[
+				"especia",
+				"especialidad"
+			],
+			[
+				"array",
+				"array_fill"
+			],
+			[
+				"filter",
+				"filter_input"
+			],
+			[
+				"str_rea",
+				"str_replace"
+			],
+			[
+				"spl",
+				"spl_autoload_register"
+			],
+			[
+				"consulta",
+				"consultaRetorno"
+			],
+			[
+				"fecha",
+				"fechaNacimiento"
+			],
+			[
+				"espe",
+				"especialidades"
+			],
+			[
+				"op",
+				"option\tTag"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"paddin",
+				"padding"
+			],
+			[
+				"list",
+				"list-style-type"
+			],
+			[
+				"hea",
+				"header\tTag"
+			],
+			[
+				"deu",
+				"deudaText"
+			],
+			[
+				"mes",
+				"mesObtenido"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"re",
+				"replace"
+			],
+			[
+				"str_re",
+				"str_replace"
+			],
+			[
+				"sql",
+				"sqlMes"
+			],
+			[
+				"id",
+				"id_mes"
+			],
+			[
+				"gett",
+				"gettype"
+			],
+			[
+				"subtr",
+				"substr"
+			],
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"sessi",
+				"session_start"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"sessin",
+				"session_start"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"mb_conver",
+				"mb_convert_encoding"
+			],
+			[
+				"utf",
+				"utf8_encode"
+			],
+			[
+				"_",
+				"_password"
+			],
+			[
+				"alu",
+				"_alumnos"
+			],
+			[
+				"per",
+				"persona1"
+			],
+			[
+				"esto",
+				"_estomagoLleno"
+			],
+			[
+				"mysql",
+				"mysql_connect"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "in",
+		"selected_items":
+		[
+			[
+				"in",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"Pro",
+				"Project: Add Folder"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"Package Control:remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"code",
+				"CodeFormatter: Show PHP Transformations"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/AppHoraMedica",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers",
+		"/C/xampp/htdocs/AppHoraMedica/Models",
+		"/C/xampp/htdocs/AppHoraMedica/vendor",
+		"/C/xampp/htdocs/AppHoraMedica/vendor/estilo",
+		"/C/xampp/htdocs/AppHoraMedica/vendor/js"
+	],
+	"file_history":
+	[
+		"/C/xampp/htdocs/AppHoraMedica/vendor/js/general.js",
+		"/C/xampp/htdocs/AppHoraMedica/vendor/estilo/estilo.css",
+		"/C/xampp/htdocs/AppHoraMedica/Views/agregarTerapeuta.php",
+		"/C/xampp/htdocs/AppHoraMedica/Models/Conexion.php",
+		"/C/xampp/htdocs/AppHoraMedica/Models/Especialidad.php",
+		"/C/xampp/htdocs/AppHoraMedica/Models/Terapeuta.php",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers/TerapeutaController.php",
+		"/C/xampp/htdocs/testingComposer/index.php",
+		"/C/xampp/htdocs/laboratorio/dataTablesTest/views/index.php",
+		"/C/xampp/htdocs/AppHoraMedica/Models/Paciente.php",
+		"/C/xampp/htdocs/AppHoraMedica/Models/Consulta.php",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers/PacienteController.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/agregarPaciente.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/modificarPaciente.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/listarPaciente.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/menu.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/header.php",
+		"/C/xampp/htdocs/dashboard_/views/login/login.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/listarEliminarPaciente.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/agregarConsulta.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/home.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/Paciente/agregar.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/Terapeuta/agregar.php",
+		"/C/xampp/htdocs/AppMisCuentas/views/agregar.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/Paciente/listarEliminar.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/Paciente/eliminar.php",
+		"/C/Users/alex/Downloads/1494685166.layoutit.html",
+		"/C/xampp/htdocs/AppHoraMedica/Models/home.php",
+		"/C/xampp/htdocs/AppHoraMedica/vendor/components/jquery/jquery.min.js",
+		"/C/xampp/htdocs/AppHoraMedica/composer.json",
+		"/C/xampp/htdocs/AppHoraMedica/Views/cabecera.php",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers/TerapeutasController.php",
+		"/C/xampp/htdocs/AppHoraMedica/index.php",
+		"/E/Inacap 2017/Modelamiento Procesos de negocio/Unidad_3/Estrategia.html",
+		"/C/xampp/htdocs/AppHoraMedica/Views/home.php_",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers/PacientesController.php",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers/ConsultasController.php",
+		"/E/Inacap 2017/Ingenieria de Requerimiento/10-05-2017.html",
+		"/E/Inacap 2017/Ingenieria de Requerimiento/clase 20-03-2017.txt",
+		"/C/xampp/htdocs/dashboard_/views/venta/grupo.php",
+		"/C/xampp/htdocs/testingComposer/listar.php",
+		"/C/xampp/htdocs/dashboard_/js/venta.js",
+		"/E/Inacap 2017/Modelamiento Procesos de negocio/Unidad_3/BioRhyme/OFL.txt",
+		"/C/xampp/htdocs/Recursos/BioRhyme/OFL.txt",
+		"/C/Users/alex/Downloads/CustomKeys.txt",
+		"/C/xampp/htdocs/testingComposer/composer.json",
+		"/E/Inacap 2017/Modelamiento Procesos de negocio/Unidad_3/Estrategia.txt",
+		"/C/xampp/htdocs/testingComposer/vendor/autoload.php",
+		"/C/xampp/htdocs/testingComposer/vendor/composer/autoload_real.php",
+		"/C/xampp/htdocs/testingComposer/vendor/composer/ClassLoader.php",
+		"/C/xampp/htdocs/AppHoraMedica/sql.sql",
+		"/C/xampp/htdocs/AppHoraMedica/lib/css/estilo.css",
+		"/C/xampp/htdocs/AppHoraMedica/lib/js/general.js",
+		"/C/xampp/htdocs/AppMisCuentas/js/general.js",
+		"/C/xampp/htdocs/AppHoraMedica/lib/multiselectChosen/recibeChosen.php",
+		"/C/xampp/htdocs/AppHoraMedica/lib/multiselectChosen/multiselect.php",
+		"/C/xampp/htdocs/AppHoraMedica/Config/Autoload.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/agregar.php",
+		"/C/xampp/htdocs/AppHoraMedica/pacientes.sql",
+		"/C/xampp/htdocs/AppHoraMedica/Config/Enrutador.php",
+		"/C/xampp/htdocs/AppHoraMedica/Config/Request.php",
+		"/C/xampp/htdocs/AppHoraMedica/.htaccess",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers/Pacientes.php",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers/Consultas.php",
+		"/C/xampp/htdocs/AppHoraMedica/config/Autoload.php",
+		"/C/Users/alex/Desktop/.htaccess",
+		"/C/xampp/htdocs/AppHoraMedica/views/home.php",
+		"/C/xampp/htdocs/AppHoraMedica/views/agregar.php",
+		"/C/xampp/htdocs/AppHoraMedica/models/Conexion.php",
+		"/C/xampp/htdocs/AppHoraMedica/models/Consulta.php",
+		"/C/xampp/htdocs/AppHoraMedica/models/Paciente.php",
+		"/C/xampp/htdocs/AppHoraMedica/Config/Config.php",
+		"/C/xampp/htdocs/AppHoraMedica/models/autoload.php",
+		"/C/xampp/htdocs/AppHoraMedica/models/Terapeuta.php",
+		"/C/xampp/htdocs/AppMisCuentas/css/main.css",
+		"/C/xampp/htdocs/AppHoraMedica/config/Config.php",
+		"/C/xampp/htdocs/AppHoraMedica/views/cabecera.php",
+		"/C/xampp/htdocs/AppMisCuentas/js/ajax.js",
+		"/C/xampp/htdocs/doctrine2-tutorial/composer.json",
+		"/C/xampp/htdocs/doctrine2-tutorial/vendor/symfony/polyfill-mbstring/bootstrap.php",
+		"/C/xampp/htdocs/Curso_CSS/home.html",
+		"/C/xampp/htdocs/Curso_CSS/css/estilo.css",
+		"/C/xampp/htdocs/AppMisCuentas/controllers/misCuentasController.php",
+		"/C/xampp/htdocs/AppMisCuentas/js/tablesConfiguration.js",
+		"/C/xampp/htdocs/AppMisCuentas/controllers/loginController.php",
+		"/E/Doctrine/doctrine2-2.5.6/lib/Doctrine/ORM/Configuration.php",
+		"/C/xampp/htdocs/MiPrimeraWeb/lib/css/estilo.css",
+		"/C/xampp/htdocs/MiPrimeraWeb/views/home.php",
+		"/C/xampp/htdocs/MiPrimeraWeb/index.php",
+		"/E/Inacap 2017/Modelamiento Procesos de negocio/apuntesPruebaDos.txt",
+		"/E/Inacap 2017/Taller SO II/class_20_04_2017.txt",
+		"/C/xampp/htdocs/ecommerce/package.json",
+		"/C/xampp/htdocs/ecommerce/resources/assets/sass/app.scss",
+		"/C/xampp/htdocs/ecommerce/database/migrations/2017_05_01_212911_create_products_table.php",
+		"/C/xampp/htdocs/ecommerce/routes/web.php",
+		"/C/xampp/htdocs/ecommerce/resources/views/main/home.blade.php",
+		"/C/xampp/htdocs/ecommerce/app/Http/Controllers/MainController.php",
+		"/C/xampp/htdocs/ecommerce/resources/views/layouts/app.blade.php",
+		"/C/xampp/htdocs/ecommerce/resources/views/auth/login.blade.php",
+		"/C/xampp/htdocs/ecommerce/app/Http/Controllers/Controller.php",
+		"/C/xampp/htdocs/ecommerce/app/User.php",
+		"/C/xampp/htdocs/ecommerce/readme.txt",
+		"/C/xampp/htdocs/ecommerce/ecommerce.sublime-project",
+		"/C/xampp/htdocs/ProyectosSublime.sublime-project",
+		"/C/xampp/htdocs/miLaravel/ecommerce",
+		"/C/xampp/htdocs/miLaravel/app/Http/Middleware/RoleMiddleware.php",
+		"/C/xampp/htdocs/miLaravel/app/Http/Controllers/TestController.php",
+		"/C/xampp/htdocs/miLaravel/app/Http/Controllers/ABCController.php",
+		"/C/xampp/htdocs/miLaravel/app/Http/Kernel.php",
+		"/C/xampp/htdocs/miLaravel/app/Http/Middleware/TerminateMiddleware.php",
+		"/C/xampp/htdocs/miLaravel/app/Http/Controllers/UserController.php",
+		"/C/xampp/htdocs/miLaravel/database/migrations/2014_10_12_100000_create_password_resets_table.php",
+		"/C/xampp/htdocs/miLaravel/.env",
+		"/C/xampp/htdocs/miLaravel/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/C/xampp/htdocs/miLaravel/app/Http/Controllers/Auth/LoginController.php",
+		"/C/xampp/htdocs/miLaravel/app/Http/Controllers/Auth/RegisterController.php",
+		"/C/xampp/htdocs/miLaravel/composer.json",
+		"/C/xampp/htdocs/miLaravel/routes/web.php",
+		"/C/xampp/htdocs/miLaravel/app/Http/Middleware/AgeMiddleware.php",
+		"/C/xampp/htdocs/miLaravel/config/database.php",
+		"/C/xampp/htdocs/miLaravel/resources/views/welcome.blade.php",
+		"/C/xampp/htdocs/miLaravel/app/Http/Controllers/Controller.php",
+		"/C/xampp/htdocs/miLaravel/routes/api.php",
+		"/C/xampp/htdocs/miLaravel/routes/channels.php",
+		"/C/xampp/htdocs/miLaravel/routes/console.php",
+		"/C/xampp/htdocs/CodeIgniter/application/config/autoload.php",
+		"/C/xampp/htdocs/CodeIgniter/application/config/config.php",
+		"/C/xampp/htdocs/CodeIgniter/application/config/database.php"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"valida",
+			"agregarTerapeuta",
+			"agregar",
+			"valida",
+			"agregar",
+			"valida",
+			"Especialidad",
+			"Paciente",
+			"paciente",
+			"Paciente",
+			"$paciente",
+			"Paciente()",
+			"alert",
+			"\"",
+			"alert",
+			"]",
+			"../../",
+			"Terapeuta/",
+			"Paciente/",
+			"muestraMysql",
+			"modificaMysql",
+			"$sql.*",
+			"$sql",
+			"connMysql",
+			"\\",
+			"biorhyme",
+			"\\",
+			"consultaSimple",
+			"consultaRetorno",
+			"atributo",
+			"<option>",
+			"</tr>",
+			"<tr>",
+			"</td>",
+			"<td>",
+			"Remem",
+			"rememve",
+			"remember",
+			"remembe",
+			"age",
+			"library",
+			"nice_date",
+			"Report",
+			"review",
+			"8,00",
+			"8",
+			"montoText",
+			"montos",
+			"mesText",
+			"dropDownEstado",
+			"button",
+			"0",
+			"mes",
+			"validaMesUsuario",
+			"makeHtml",
+			"dropDownEstado",
+			"makeJson",
+			"validaMesUsuario",
+			"makeHtml",
+			"getAttributeNode",
+			"getAttributeNode()",
+			"mysql_fetch_object",
+			"fetch_object",
+			"mysql_fetch_object($handle)",
+			"$handle",
+			"mysql_insert_id",
+			"mysql_error()",
+			"mysql_query",
+			"real_escape_string",
+			"mysql_real_escape_string",
+			"sys",
+			"persona",
+			"makeHtml",
+			"mes",
+			"gettype",
+			"form",
+			"general",
+			"formatNumber",
+			"getTotal",
+			"monto",
+			"getDeudas",
+			"make",
+			"asociarDeuda",
+			"getDeudasPersona",
+			"getDeudas",
+			"rut",
+			"mes",
+			"rut",
+			"mes",
+			"rut",
+			"mes",
+			"rut",
+			"mes",
+			"rut",
+			"validaMesUsuario",
+			"getDeudasPersona",
+			"getDeudasPersona\n",
+			"getDeudasPersona",
+			"Mes",
+			"validaMesUsuario",
+			"getDeudas",
+			"deudas",
+			"2",
+			"mensaje",
+			"no tiene",
+			"echo",
+			"getDeudasPersona",
+			"affected",
+			"validaMesUsuario",
+			"deudas",
+			"\n\t\t",
+			"deudas",
+			"mes",
+			"existeDeuda",
+			"agregarDeuda",
+			"existeDeuda",
+			"existe",
+			"id",
+			"idDeudaInsertada",
+			"rut",
+			"idDeuda",
+			"modal",
+			"waiting",
+			"jsonCuentas",
+			"makeJson",
+			"'\n",
+			"getPersona",
+			"esconde"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Terapeuta",
+			"terapeuta",
+			"Terapeuta",
+			"$terapeuta",
+			"Terapeuta()",
+			"'",
+			"]=\"valor por defecto\";",
+			"../",
+			"",
+			"muestra",
+			"modifica",
+			"$sql = \"\";",
+			"conn",
+			"/",
+			"modifica",
+			"muestra",
+			"<option value=''>",
+			"",
+			"</option>",
+			"<option>",
+			"getAttribute",
+			"$handle->fetch_object()",
+			"$conn->insert_id",
+			"$conn->error",
+			"$conn->query",
+			"$conn->real_escape_string",
+			"real_escape_string",
+			"persona"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.paneltranformations":
+	{
+		"height": 396.0
+	},
+	"pinned_build_system": "",
+	"project": "horasMedicas.sublime-project",
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 190.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
