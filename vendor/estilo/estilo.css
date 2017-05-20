@@ -13,3 +13,7 @@
 #newEspecialidad{
 	display: none;
 }
+
+.caja-ancha{
+	width:200px;
+}

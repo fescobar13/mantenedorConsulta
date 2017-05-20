@@ -39,7 +39,7 @@ class Especialidad
   	public function getEspecialidades(){
   		$sql ="SELECT * from especialidades";
   		$result = $this->conn->muestra($sql);
-		$html="<option disabled selected value=''>Seleccione una Opción</option>";
+		  $html="";
   		if( ($result->num_rows > 0) ){
   			while ( $row = $result->fetch_array(MYSQLI_ASSOC) ) {
   				$html.="<option value='".$row['id']."'>".$row['nombre']."</option>";
@@ -47,6 +47,18 @@ class Especialidad
   			return $html;
   		}
   	}
+
+    public function getEspecialidadesRaw(){
+      $sql ="SELECT * from especialidades";
+      $result = $this->conn->muestra($sql);
+      $esp = array();
+      if( ($result->num_rows > 0) ){
+        while ( $row = $result->fetch_array(MYSQLI_ASSOC) ) {
+          $esp[]= $row['id']."|".$row['nombre'];
+        }
+      }
+      return $esp;
+    }
 
 
 }

@@ -7,7 +7,7 @@ require_once "Especialidad.php";
 
 class Terapeuta 
 {
-  
+  private $id;
   private $nombre;
   private $apellido;
   private $rut;
@@ -15,6 +15,7 @@ class Terapeuta
   private $telefono;
   private $email;
   private $especialidad;
+  private $estado;
 
   function __construct(){
     $this->conn = new Conexion();
@@ -22,6 +23,7 @@ class Terapeuta
     $this->email="";
     $this->apellido="";
     $this->edad=0;
+    $this->especialidad = array();
   }
 
   public function set($atributo, $valor){
@@ -32,55 +34,107 @@ class Terapeuta
     return $this->$atributo;
   }
 
+  private function relacionaTerapeutaEspecialidad(){
+    foreach ( $this->especialidad as $esp ) {
+      $sql = "INSERT INTO terapeuta_especialidad ( id_terapeuta, id_especialidad, estado ) 
+              values (".$this->id.", ".$esp.", 1 )";
+      $this->conn->modifica($sql);
+    }
+  }
+
+  public function getTerapeutas(){
+    $sql ="SELECT * from terapeutas where estado =1";
+    $result = $this->conn->muestra($sql);
+    $pacientes=array();
+    while( $row = $result->fetch_array(MYSQLI_ASSOC) ){
+      $pacientes[] = $row['id']."|".$row['rut']."|".$row['nombre']."|".$row['apellido'];
+    }
+    return $pacientes; 
+  }
+
+  private function ActualizarTerapeutaEspecialidad(){
+    $sql = "DELETE from terapeuta_especialidad 
+            where id_terapeuta=".$this->id." and estado=1";
+     $this->conn->modifica($sql);
+
+    foreach ( $this->especialidad as $esp ) {
+      $sql = "INSERT INTO terapeuta_especialidad ( id_terapeuta, id_especialidad, estado ) 
+              values (".$this->id.", ".$esp.", 1 )";
+      $this->conn->modifica($sql);
+    }
+  }
+
+  private function lastId(){
+    $sql = "SELECT LAST_INSERT_ID() id from terapeutas";
+    $rs = $this->conn->muestra($sql);
+    while ( $row = $rs->fetch_array(MYSQLI_ASSOC) ) {
+      $id = $row['id'];
+      break;
+    }
+    return $id;
+  }
+
   public function agregar(){
-    $sql ="SELECT * from terapeutas where rut='{$this->rut}'";
+    $sql ="SELECT * from terapeutas where rut='{$this->rut}' and estado =1";
     $result = $this->conn->muestra($sql);
 
     if( !($result->num_rows > 0) ){
-      $sql = "INSERT INTO terapeutas (rut, nombre, apellido, edad, telefono, email)
+      $sql = "INSERT INTO terapeutas (rut, nombre, apellido, edad, telefono, email,estado)
         VALUES ('{$this->rut}','{$this->nombre}','{$this->apellido}',
-                '{$this->edad}','{$this->telefono}','{$this->email}')";
+                '{$this->edad}','{$this->telefono}','{$this->email}',1)";
+
 
       $this->conn->modifica($sql);
-      $idTerapeuta = $this->conn->insert_id;
-
-      $sql = "INSERT INTO terapeuta_especialidad ( id_terapeuta, id_especialidad ) 
-              values ('".$idTerapeuta."', '{$this->especialidad}' )";
+      $this->id = $this->lastId();
+      $this->relacionaTerapeutaEspecialidad();
      
       return "agrego";
 
     }else{
       return "existe";
     }
+  }
 
+  private function eliminarRelacionEspecialidad(){
+    $sql ="SELECT id from terapeuta_especialidad 
+        where id_terapeuta ='{$this->id}' and estado =1";
 
+    $result = $this->conn->muestra($sql);   
+    while( $row = $result->fetch_array(MYSQLI_ASSOC) ){
+      $sql = "UPDATE terapeuta_especialidad set estado = 0 where id =".$row['id']."";
+      $this->conn->modifica($sql);
+    }
   }
 
   public function eliminar(){
-    $sql ="SELECT * from pacientes where id='{$this->id}'";
-    $result = $this->conn->muestra($sql);
+    $sql ="SELECT * from terapeutas where id='{$this->id}' and estado =1";
+    $result = $this->conn->muestra( $sql );
 
     if( ($result->num_rows > 0) ){
-      $sql = "DELETE from pacientes where id='{$this->id}'";
+      $sql = "UPDATE terapeutas set estado = 0 where id ='{$this->id}'";
 
       $this->conn->modifica($sql);
+      $this->eliminarRelacionEspecialidad();
       return "elimino";
 
     }else{
+
       return "no existe";
     }
   }
 
   public function modificar(){
-    $sql ="SELECT * from pacientes where id ='{$this->id}'";
+    $sql ="SELECT * from terapeutas where id ='{$this->id}' and estado =1";
     $result = $this->conn->muestra($sql);
 
     if( ($result->num_rows > 0) ){
-      $sql = "UPDATE pacientes SET nombre ='{$this->nombre}',apellido ='{$this->apellido}',
+      $sql = "UPDATE terapeutas SET nombre ='{$this->nombre}',apellido ='{$this->apellido}',
               edad ='{$this->edad}',rut ='{$this->rut}',telefono ='{$this->telefono}',
               email ='{$this->email}' where id='{$this->id}' ";
       
       $this->conn->modifica($sql);
+      //Elimino e ingreso la nuevas especialidades
+      $this->ActualizarTerapeutaEspecialidad();
       return "modificado";
     }else{
       return "no existe";
@@ -93,15 +147,42 @@ class Terapeuta
     return $this->makeHtmlEditable($datos); 
   }
 
+  public function getEspecialidadesTerapeuta($id){
+    $sql = "SELECT * from terapeuta_especialidad a 
+            inner join especialidades b on a.id_especialidad=b.id 
+            where id_terapeuta=".$id." and a.estado=1";
+    $rs = $this->conn->muestra($sql);
+    $html="";
+    while ( $row = $rs->fetch_array(MYSQLI_ASSOC) ) {
+      $html.= $row['nombre']."<br>";
+    }
+    // $html = trim( $html,"," );
+    return $html;
+  }
+
+  public function getEspecialidadesTerapeutaRaw($id){
+    $sql = "SELECT * from terapeuta_especialidad a 
+            inner join especialidades b on a.id_especialidad=b.id 
+            where id_terapeuta=".$id." and a.estado=1";
+    $rs = $this->conn->muestra($sql);
+    $esp = array();
+    while ( $row = $rs->fetch_array(MYSQLI_ASSOC) ) {
+      $esp[] = $row['nombre'];
+    }
+    return $esp;
+  }
+
   public function listar(){ //eliminar
-    $sql ="SELECT * from pacientes";
+    $sql ="SELECT * from terapeutas where estado =1";
     $datos = $this->conn->muestra( $sql );
+    
     return $this->htmlListar( $datos ); 
   }
 
   private function htmlListar($datos){
     $html="";
     while( $row = $datos->fetch_array(MYSQLI_ASSOC) ){
+      $especialidades = $this->getEspecialidadesTerapeuta( $row['id'] );
       $html.="<tr>
           <td>".$row['rut']."</td>
           <td>".$row['nombre']."</td>
@@ -109,10 +190,12 @@ class Terapeuta
           <td>".$row['edad']."</td>
           <td>".$row['telefono']."</td>
           <td>".$row['email']."</td>
+          <td>".$especialidades."</td>
           <td>
             <p>
-              <a href='#' onclick='requestModificarTerapeuta(".$row['id'].")' ><img src='' alt='Modificar'></a>
-              <a href='#' onclick='eliminarTerapeuta(".$row['id'].")'><img src='' alt='Eliminar'></a>
+              <a href='#' onclick='requestModificarTerapeuta(".$row['id'].")' ><i class='fa fa-pencil-square-o fa-2x' aria-hidden='true'></i></a>
+              <a href='#' class='btn-sm btn-danger' onclick='eliminarTerapeuta(".$row['id'].")'>
+              <i class='fa fa-trash-o fa-lg'></i></a>
             </p>
           </td>
           </tr>";
@@ -121,7 +204,7 @@ class Terapeuta
   }
 
   public function getModificarForm(){
-    $sql ="SELECT * from pacientes where id='{$this->id}'";
+    $sql ="SELECT * from terapeutas where id='{$this->id}' and estado=1";
     $result = $this->conn->muestra($sql);
 
     if( ($result->num_rows > 0) ){
@@ -131,6 +214,22 @@ class Terapeuta
 
   private function htmlModificaForm($datos){
     $html="";
+    $Especialidad = new Especialidad(); 
+    $especialidades = $Especialidad->getEspecialidadesRaw();
+    $espTerapeuta = $this->getEspecialidadesTerapeutaRaw($this->id);
+    $options="";
+    foreach ( $especialidades as $especialidad ) {
+      $especialidad = explode("|", $especialidad);
+
+      // in_array(needle, haystack)
+
+      if( in_array( $especialidad[1],  $espTerapeuta ) ){
+        $options .= "<option value ='".$especialidad[0]."' selected>".$especialidad[1]."</option>";
+      }else{
+        $options .= "<option value ='".$especialidad[0]."'>".$especialidad[1]."</option>";
+      }
+    }
+
     while( $row = $datos->fetch_array(MYSQLI_ASSOC) ){
       $html.="<div class='form-group'>
                 <label for='nombre'>
@@ -167,7 +266,16 @@ class Terapeuta
                   Email:
                 </label>
                 <input class='form-control' id='email' name='email'  value='".$row['email']."' type='email' />
-              </div><br>
+              </div>
+              <div class='form-group top-margin'>
+                <label for='telefono' class='top-margin'>
+                  Especialidad:
+                </label>
+                <select id='cmbEspecialidades' class='form-control' style='width:180px;' data-placeholder='Seleccione un Opción' multiple=''>
+                  ".$options."
+                </select>
+              </div>
+              <div></div>
               <div class='form-group'>
                 <button type='button' onclick='validaFormTerapeuta(\"modificar\");' class='btn btn-primary top-margin'>
                   Modificar

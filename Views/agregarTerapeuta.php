@@ -8,10 +8,11 @@
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 
-    <title>Agregar Paciente</title>
+    <title>Agregar Terapeuta</title>
     <link rel="stylesheet" type="text/css" href="../vendor/estilo/estilo.css">
     <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="../vendor/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/chosen/chosen.css">
     <link rel="stylesheet" type="text/css" 
     href="../vendor/datatables/datatables/media/css/jquery.dataTables.min.css">
 </head>
@@ -22,7 +23,7 @@
 
 		<div class="col-md-6">
 			<h3>Agregar Terapeuta</h3>
-			<form role="form" id='formPaciente' class="form-inline">
+			<form role="form" id='formTerapeuta' class="form-inline">
 				<div class="form-group">
 					<label for="nombre">
 						Nombre:
@@ -61,7 +62,7 @@
 					<label for="telefono" class="top-margin">
 						Especialidad:
 					</label>
-					<select id='cmbEspecialidades' class="form-control">
+					<select id='cmbEspecialidades' class="form-control" style="width:180px;" data-placeholder="Seleccione un Opción" multiple="">
 						
 					</select>
 				</div>
@@ -91,6 +92,7 @@
 <script src="../vendor/components/jquery/jquery.min.js"></script>
 <script src="../vendor/datatables/datatables/media/js/jquery.dataTables.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../vendor/chosen/chosen.jquery.min.js"></script>
 <script src="../vendor/jquery-ui/jquery-ui.min.js"></script>
 <script src="../vendor/js/general.js"></script>
 
@@ -101,6 +103,7 @@
         collapsible: true
       });
     });
+   
   </script>
 </body>
 </html>

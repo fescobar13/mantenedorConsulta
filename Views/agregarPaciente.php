@@ -27,8 +27,8 @@
 					<label for="nombre">
 						Nombre:
 					</label>
-					<input class="form-control right-margin" id="nombre" name="nombre" type="text" required/>
-					<label for="rut" class="top-margin">
+					<input class="form-control right-margin caja-ancha" id="nombre" name="nombre" type="text" required/>
+					<label for="rut" class="">
 						Rut:
 					</label>
 					<input class="form-control" id="rut" name="rut"  type="text" required/>
@@ -54,7 +54,7 @@
 					<label for="email" class="top-margin">
 						Email:
 					</label>
-					<input class="form-control" id="email" name="email" type="email" />
+					<input class="form-control caja-ancha" id="email" name="email" type="email" />
 				</div><br>
 
 				<div class="form-group">

@@ -53,12 +53,12 @@ class Paciente
   }
 
   public function habilitarPaciente($id){
-    $sql ="UPDATE pacientes set estado =1 where id =".$id."";
+    $sql ="UPDATE pacientes set estado = 1 where id =".$id."";
     $this->conn->modifica($sql);
   }
 
   public function deshabilitarPaciente($id){
-    $sql ="UPDATE pacientes set estado =1 where id =".$id."";
+    $sql ="UPDATE pacientes set estado = 1 where id =".$id."";
     $this->conn->modifica($sql);
   }
 
@@ -67,7 +67,8 @@ class Paciente
     $result = $this->conn->muestra($sql);
 
     if( ($result->num_rows > 0) ){
-      $sql = "DELETE from pacientes where id='{$this->id}'";
+      // $sql = "DELETE from pacientes where id='{$this->id}'";
+      $sql = "UPDATE pacientes set estado = 0 where id='{$this->id}'";
 
       $this->conn->modifica($sql);
       return "elimino";
@@ -100,7 +101,7 @@ class Paciente
   }
 
   public function listar(){ //eliminar
-    $sql ="SELECT * from pacientes";
+    $sql ="SELECT * from pacientes where estado=1";
     $datos = $this->conn->muestra( $sql );
     return $this->htmlListar( $datos ); 
   }
@@ -117,8 +118,10 @@ class Paciente
           <td>".$row['email']."</td>
           <td>
             <p>
-              <a href='#' onclick='requestModificarPaciente(".$row['id'].")' ><img src='' alt='Modificar'></a>
-              <a href='#' onclick='eliminarPaciente(".$row['id'].")'><img src='' alt='Eliminar'></a>
+              <a href='#' onclick='requestModificarPaciente(".$row['id'].")' >
+              <i class='fa fa-pencil-square-o fa-2x' aria-hidden='true'></i></a>
+              <a href='#' class='btn-sm btn-danger' onclick='eliminarPaciente(".$row['id'].")'>
+              <i class='fa fa-trash-o fa-lg'></i></a>
             </p>
           </td>
           </tr>";
@@ -133,6 +136,16 @@ class Paciente
     if( ($result->num_rows > 0) ){
       return $this->htmlModificaForm($result); 
     }
+  }
+
+  public function getPacientes(){
+    $sql ="SELECT * from pacientes where estado =1";
+    $result = $this->conn->muestra($sql);
+    $pacientes=array();
+    while( $row = $result->fetch_array(MYSQLI_ASSOC) ){
+      $pacientes[] = $row['id']."|".$row['rut']."|".$row['nombre']."|".$row['apellido'];
+    }
+    return $pacientes; 
   }
 
   private function htmlModificaForm($datos){

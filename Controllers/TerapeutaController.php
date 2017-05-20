@@ -1,7 +1,5 @@
 <?php 
-/**
-* 
-*/
+
 require_once "../Models/Conexion.php";
 require_once "../Models/Terapeuta.php";
 require_once "../Models/Especialidad.php";
@@ -13,14 +11,27 @@ session_start();
 // $_POST['rut']="valor por defecto";
 // $_POST['telefono']="valor por defecto";
 // $_POST['email']="valor por defecto";
-
 // $_POST['request'] = "agregar";
 
+class TerapeutaController
+{
+	public function converToArray($string){
+		if( strstr($string, ",") ){
+			$arr = explode(",", $string);
+		}else{
+			$arr = array(0=>$string);
+		}
+		return $arr;
+	}
+	
+}
 
 /* POST */
 
 if( isset( $_POST['request'] ) && $_POST['request'] !='' ) {
 	//Clase que valida los datos de la peticion
+	$controller = new TerapeutaController();
+
 	if( $_POST['request'] == 'agregar' ){
 		
 		$terapeuta = new Terapeuta();
@@ -30,10 +41,11 @@ if( isset( $_POST['request'] ) && $_POST['request'] !='' ) {
 		$terapeuta->set("rut",$_POST['rut']);
 		$terapeuta->set("telefono",$_POST['telefono']);
 		$terapeuta->set("email",$_POST['email']);
-		$terapeuta->set("especialidad", $_POST['especialidad'] );
+		$especialidad = $controller->converToArray( $_POST['especialidad'] );
+		$terapeuta->set("especialidad", $especialidad );
+
 		$rs = $terapeuta->agregar();
 		
-
 		if( $rs == 'existe' ){
 			echo "Terapeuta ya existe";
 		}else if($rs == 'agrego'){
@@ -53,7 +65,7 @@ if( isset( $_POST['request'] ) && $_POST['request'] !='' ) {
 			echo "Terapeuta eliminado";
 
 		}else if( $rs == 'no existe' ){
-			echo "No se encontro";
+			echo "No se encontro el terapeuta";
 		}
 	}else if( $_POST['request'] == 'modificar' ){
 
@@ -65,6 +77,8 @@ if( isset( $_POST['request'] ) && $_POST['request'] !='' ) {
 		$terapeuta->set("telefono",$_POST['telefono']);
 		$terapeuta->set("email",$_POST['email']);
 		$terapeuta->set("id",$_POST['id']);
+		$especialidad = $controller->converToArray( $_POST['especialidad'] );
+		$terapeuta->set("especialidad", $especialidad );
 		$rs = $terapeuta->modificar();
 
 		if( $rs == 'modificado' ){

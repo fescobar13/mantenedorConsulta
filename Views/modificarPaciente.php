@@ -8,7 +8,7 @@
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 
-    <title>Agregar Paciente</title>
+    <title>Modificar Paciente</title>
     <link rel="stylesheet" type="text/css" href="../vendor/estilo/estilo.css">
     <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="../vendor/jquery-ui/jquery-ui.min.css">

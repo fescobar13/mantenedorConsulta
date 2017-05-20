@@ -9,6 +9,7 @@
     <meta name="author" content="LayoutIt!">
 
     <title>Listado Paciente</title>
+    <link rel="stylesheet" type="text/css" href="../vendor/estilo/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../vendor/estilo/estilo.css">
     <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="../vendor/jquery-ui/jquery-ui.min.css">
