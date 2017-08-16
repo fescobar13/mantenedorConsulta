@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"pac",
+				"pacientes"
+			],
+			[
+				"id_",
+				"id_terapeuta"
+			],
+			[
+				"id",
+				"id_especialidad"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"conslt",
+				"consulta"
+			],
+			[
+				"getE",
+				"getElementById"
+			],
+			[
 				"terapue",
 				"Terapeuta"
 			],
@@ -18,10 +42,6 @@
 			[
 				"mod",
 				"modificarPaciente"
-			],
-			[
-				"get",
-				"getElementById"
 			],
 			[
 				"th",
@@ -136,10 +156,6 @@
 				"sqlMes"
 			],
 			[
-				"id",
-				"id_mes"
-			],
-			[
 				"gett",
 				"gettype"
 			],
@@ -199,6 +215,15 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "vendor/js/general.js",
+			"settings":
+			{
+				"buffer_size": 20058,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -264,32 +289,39 @@
 		"/C/xampp/htdocs/AppHoraMedica/Controllers",
 		"/C/xampp/htdocs/AppHoraMedica/Models",
 		"/C/xampp/htdocs/AppHoraMedica/vendor",
-		"/C/xampp/htdocs/AppHoraMedica/vendor/estilo",
-		"/C/xampp/htdocs/AppHoraMedica/vendor/js"
+		"/C/xampp/htdocs/AppHoraMedica/vendor/js",
+		"/C/xampp/htdocs/AppHoraMedica/Views"
 	],
 	"file_history":
 	[
-		"/C/xampp/htdocs/gitLab.txt",
+		"/C/xampp/htdocs/AppHoraMedica/Models/Consulta.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/listarPaciente.php",
+		"/C/xampp/htdocs/AppHoraMedica/Models/Terapeuta.php",
+		"/C/xampp/htdocs/AppHoraMedica/Models/Paciente.php",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers/PacienteController.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/listarConsulta.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/listarTerapeuta.php",
 		"/C/xampp/htdocs/AppHoraMedica/vendor/js/general.js",
-		"/C/xampp/htdocs/AppHoraMedica/vendor/estilo/estilo.css",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers/ConsultaController.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/agregarConsulta.php",
+		"/C/xampp/htdocs/AppHoraMedica/Models/Especialidad.php",
+		"/C/xampp/htdocs/AppHoraMedica/Controllers/TerapeutaController.php",
+		"/C/Users/alex/Desktop/horas_medicas.sql",
 		"/C/xampp/htdocs/AppHoraMedica/Views/agregarTerapeuta.php",
 		"/C/xampp/htdocs/AppHoraMedica/Models/Conexion.php",
-		"/C/xampp/htdocs/AppHoraMedica/Models/Especialidad.php",
-		"/C/xampp/htdocs/AppHoraMedica/Models/Terapeuta.php",
-		"/C/xampp/htdocs/AppHoraMedica/Controllers/TerapeutaController.php",
+		"/C/xampp/htdocs/AppHoraMedica/Views/menu.php",
+		"/C/xampp/htdocs/laboratorio/functionTester.php",
+		"/C/xampp/htdocs/laboratorio/New Text Document.txt",
+		"/C/xampp/htdocs/laboratorio/arreglos.php",
+		"/C/xampp/htdocs/gitLab.txt",
+		"/C/xampp/htdocs/AppHoraMedica/vendor/estilo/estilo.css",
 		"/C/xampp/htdocs/testingComposer/index.php",
 		"/C/xampp/htdocs/laboratorio/dataTablesTest/views/index.php",
-		"/C/xampp/htdocs/AppHoraMedica/Models/Paciente.php",
-		"/C/xampp/htdocs/AppHoraMedica/Models/Consulta.php",
-		"/C/xampp/htdocs/AppHoraMedica/Controllers/PacienteController.php",
 		"/C/xampp/htdocs/AppHoraMedica/Views/agregarPaciente.php",
 		"/C/xampp/htdocs/AppHoraMedica/Views/modificarPaciente.php",
-		"/C/xampp/htdocs/AppHoraMedica/Views/listarPaciente.php",
-		"/C/xampp/htdocs/AppHoraMedica/Views/menu.php",
 		"/C/xampp/htdocs/AppHoraMedica/Views/header.php",
 		"/C/xampp/htdocs/dashboard_/views/login/login.php",
 		"/C/xampp/htdocs/AppHoraMedica/Views/listarEliminarPaciente.php",
-		"/C/xampp/htdocs/AppHoraMedica/Views/agregarConsulta.php",
 		"/C/xampp/htdocs/AppHoraMedica/Views/home.php",
 		"/C/xampp/htdocs/AppHoraMedica/Views/Paciente/agregar.php",
 		"/C/xampp/htdocs/AppHoraMedica/Views/Terapeuta/agregar.php",
@@ -389,18 +421,11 @@
 		"/C/xampp/htdocs/miLaravel/composer.json",
 		"/C/xampp/htdocs/miLaravel/routes/web.php",
 		"/C/xampp/htdocs/miLaravel/app/Http/Middleware/AgeMiddleware.php",
-		"/C/xampp/htdocs/miLaravel/config/database.php",
-		"/C/xampp/htdocs/miLaravel/resources/views/welcome.blade.php",
-		"/C/xampp/htdocs/miLaravel/app/Http/Controllers/Controller.php",
-		"/C/xampp/htdocs/miLaravel/routes/api.php",
-		"/C/xampp/htdocs/miLaravel/routes/channels.php",
-		"/C/xampp/htdocs/miLaravel/routes/console.php",
-		"/C/xampp/htdocs/CodeIgniter/application/config/autoload.php",
-		"/C/xampp/htdocs/CodeIgniter/application/config/config.php"
+		"/C/xampp/htdocs/miLaravel/config/database.php"
 	],
 	"find":
 	{
-		"height": 36.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -414,6 +439,70 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"getTableConsultas",
+			"geTable",
+			"dom",
+			"getTable",
+			"ordering",
+			"htmlListar",
+			"listar",
+			"seguro de eliminar",
+			"limpiaForm",
+			"valida",
+			"ui",
+			"getHtmlConsultas",
+			"reservar",
+			"getHtmlConsultas",
+			"encabezado",
+			"getEspecialidad",
+			"getTableConsultas",
+			"eliminarRelacionEspecialidad",
+			"listarTera",
+			"listarPaciente",
+			"listarTerapeuta",
+			"eliminar",
+			"horas_medicas",
+			"agregarTerapeuta",
+			"agregar",
+			"eliminar",
+			"listar",
+			"getHtmlConsultas",
+			"getTableConsultas",
+			"dataConsulta",
+			"data",
+			"consulta",
+			"reservar",
+			"$horasTomadas",
+			"getIndexHoraActual",
+			"getHtmlConsultas",
+			"continue",
+			"in",
+			"getHtmlConsultas",
+			"this",
+			"idsTerapeutas",
+			"consulta",
+			"getHtmlConsultas",
+			"get",
+			"getHtmlConsultas",
+			"getEspe",
+			"getHtmlConsultas",
+			"displa",
+			"getHtmlConsultas",
+			"idpaciente",
+			"horas",
+			"getData",
+			"getdata",
+			"htmlListarCombo",
+			"listarPacienteSimple",
+			"tipoHtml",
+			"especialida",
+			"getespecialidadesimple",
+			"especialida",
+			"listarPaciente",
+			"html",
+			"htmlListar",
+			"paciente",
+			"getDataConsulta",
 			"valida",
 			"agregarTerapeuta",
 			"agregar",
@@ -477,71 +566,7 @@
 			"getAttributeNode()",
 			"mysql_fetch_object",
 			"fetch_object",
-			"mysql_fetch_object($handle)",
-			"$handle",
-			"mysql_insert_id",
-			"mysql_error()",
-			"mysql_query",
-			"real_escape_string",
-			"mysql_real_escape_string",
-			"sys",
-			"persona",
-			"makeHtml",
-			"mes",
-			"gettype",
-			"form",
-			"general",
-			"formatNumber",
-			"getTotal",
-			"monto",
-			"getDeudas",
-			"make",
-			"asociarDeuda",
-			"getDeudasPersona",
-			"getDeudas",
-			"rut",
-			"mes",
-			"rut",
-			"mes",
-			"rut",
-			"mes",
-			"rut",
-			"mes",
-			"rut",
-			"validaMesUsuario",
-			"getDeudasPersona",
-			"getDeudasPersona\n",
-			"getDeudasPersona",
-			"Mes",
-			"validaMesUsuario",
-			"getDeudas",
-			"deudas",
-			"2",
-			"mensaje",
-			"no tiene",
-			"echo",
-			"getDeudasPersona",
-			"affected",
-			"validaMesUsuario",
-			"deudas",
-			"\n\t\t",
-			"deudas",
-			"mes",
-			"existeDeuda",
-			"agregarDeuda",
-			"existeDeuda",
-			"existe",
-			"id",
-			"idDeudaInsertada",
-			"rut",
-			"idDeuda",
-			"modal",
-			"waiting",
-			"jsonCuentas",
-			"makeJson",
-			"'\n",
-			"getPersona",
-			"esconde"
+			"mysql_fetch_object($handle)"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -587,8 +612,39 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "vendor/js/general.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20058,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9142,
+								9142
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4861.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -670,7 +726,7 @@
 	{
 	},
 	"show_minimap": true,
-	"show_open_files": false,
+	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 190.0,

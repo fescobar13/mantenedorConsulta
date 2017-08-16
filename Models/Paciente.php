@@ -11,12 +11,16 @@ class Paciente
   private $apellido;
   private $rut;
   private $edad;
-  private $telefono;
+  private $telefono;  
   private $email;
   private $estado;
+  private static $conn;
 
   function __construct(){
-    $this->conn = new Conexion();
+
+    if( !isset(self::$conn) ){
+      self::$conn = new Conexion();
+    }
     $this->telefono="";
     $this->email="";
     $this->apellido="";
@@ -33,14 +37,14 @@ class Paciente
 
   public function agregar(){
     $sql ="SELECT * from pacientes where rut='{$this->rut}'";
-    $result = $this->conn->muestra($sql);
+    $result = self::$conn->muestra($sql);
 
     if( !($result->num_rows > 0) ){
       $sql = "INSERT INTO pacientes (rut, nombre, apellido, edad, telefono, email, estado)
         VALUES ('{$this->rut}','{$this->nombre}','{$this->apellido}',
                 '{$this->edad}','{$this->telefono}','{$this->email}',1)";
 
-      $this->conn->modifica($sql);
+      self::$conn->modifica($sql);
       return "agrego";
 
     }else{ // Si el paciente existe pero esta deshabilitado
@@ -54,23 +58,23 @@ class Paciente
 
   public function habilitarPaciente($id){
     $sql ="UPDATE pacientes set estado = 1 where id =".$id."";
-    $this->conn->modifica($sql);
+    self::$conn->modifica($sql);
   }
 
   public function deshabilitarPaciente($id){
-    $sql ="UPDATE pacientes set estado = 1 where id =".$id."";
-    $this->conn->modifica($sql);
+    $sql ="UPDATE pacientes set estado = 0 where id =".$id."";
+    self::$conn->modifica($sql);
   }
 
   public function eliminar(){
     $sql ="SELECT * from pacientes where id='{$this->id}'";
-    $result = $this->conn->muestra($sql);
+    $result = self::$conn->muestra($sql);
 
     if( ($result->num_rows > 0) ){
       // $sql = "DELETE from pacientes where id='{$this->id}'";
       $sql = "UPDATE pacientes set estado = 0 where id='{$this->id}'";
 
-      $this->conn->modifica($sql);
+      self::$conn->modifica($sql);
       return "elimino";
 
     }else{
@@ -80,14 +84,14 @@ class Paciente
 
   public function modificar(){
     $sql ="SELECT * from pacientes where id ='{$this->id}'";
-    $result = $this->conn->muestra($sql);
+    $result = self::$conn->muestra($sql);
 
     if( ($result->num_rows > 0) ){
       $sql = "UPDATE pacientes SET nombre ='{$this->nombre}',apellido ='{$this->apellido}',
               edad ='{$this->edad}',rut ='{$this->rut}',telefono ='{$this->telefono}',
               email ='{$this->email}' where id='{$this->id}' ";
       
-      $this->conn->modifica($sql);
+      self::$conn->modifica($sql);
       return "modificado";
     }else{
       return "no existe";
@@ -96,14 +100,21 @@ class Paciente
 
   public function buscar(){ //modificar
     $sql ="SELECT * from dim_prod_opl where rut ='".$this->proveedor->getRut()."'";
-    $datos = $this->conn->muestra($sql);
+    $datos = self::$conn->muestra($sql);
     return $this->makeHtmlEditable($datos); 
   }
 
   public function listar(){ //eliminar
     $sql ="SELECT * from pacientes where estado=1";
-    $datos = $this->conn->muestra( $sql );
-    return $this->htmlListar( $datos ); 
+    $datos = self::$conn->muestra( $sql );
+    return $this->htmlListar( $datos );
+
+  }
+
+  public function listarSimple(){
+    $sql ="SELECT * from pacientes where estado=1";
+    $datos = self::$conn->muestra( $sql );
+    return $this->htmlListarCombo( $datos );
   }
 
   private function htmlListar($datos){
@@ -118,9 +129,9 @@ class Paciente
           <td>".$row['email']."</td>
           <td>
             <p>
-              <a href='#' onclick='requestModificarPaciente(".$row['id'].")' >
+              <a onclick='requestModificarPaciente(".$row['id'].")' >
               <i class='fa fa-pencil-square-o fa-2x' aria-hidden='true'></i></a>
-              <a href='#' class='btn-sm btn-danger' onclick='eliminarPaciente(".$row['id'].")'>
+              <a class='btn-sm btn-danger' onclick='eliminarPaciente(".$row['id'].")'>
               <i class='fa fa-trash-o fa-lg'></i></a>
             </p>
           </td>
@@ -129,9 +140,17 @@ class Paciente
     return $html;
   }
 
+  private function htmlListarCombo( $datos='' ){
+    $html="<option disabled selected value=''>Seleccione una opción</option>";
+    while( $row = $datos->fetch_array(MYSQLI_ASSOC) ){
+      $html.="<option value='".$row['id']."'>".$row['nombre']." ".$row['apellido']."</option>";
+    }
+    return $html;
+  }
+
   public function getModificarForm(){
     $sql ="SELECT * from pacientes where id='{$this->id}'";
-    $result = $this->conn->muestra($sql);
+    $result = self::$conn->muestra($sql);
 
     if( ($result->num_rows > 0) ){
       return $this->htmlModificaForm($result); 
@@ -140,7 +159,7 @@ class Paciente
 
   public function getPacientes(){
     $sql ="SELECT * from pacientes where estado =1";
-    $result = $this->conn->muestra($sql);
+    $result = self::$conn->muestra($sql);
     $pacientes=array();
     while( $row = $result->fetch_array(MYSQLI_ASSOC) ){
       $pacientes[] = $row['id']."|".$row['rut']."|".$row['nombre']."|".$row['apellido'];
@@ -196,14 +215,12 @@ class Paciente
     return $html;
   }
 
-  
-
   public function delete(){
-    
     $sql ="DELETE from dim_prod_opl 
         where rut ='{$this->proveedor->getRut()}' and id='".$this->id."' ";
-    $this->conn->modifica($sql); 
+    self::$conn->modifica($sql); 
   }
+  
 } 
 
 ?>

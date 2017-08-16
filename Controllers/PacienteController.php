@@ -39,6 +39,10 @@ if( isset($_POST['request']) && $_POST['request'] !='' ) {
 		$paciente = new Paciente();
 		echo $paciente->listar();
 
+	}else if( $_POST['request'] == 'listarSimple' ){
+		$paciente = new Paciente();
+		echo $paciente->listarSimple();
+
 	}else if( $_POST['request'] == 'eliminar' ){
 		$id = $_POST['id'];
 		$paciente = new Paciente();

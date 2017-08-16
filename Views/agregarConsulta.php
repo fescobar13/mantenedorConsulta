@@ -16,58 +16,59 @@
     <link rel="stylesheet" type="text/css" 
     href="../vendor/datatables/datatables/media/css/jquery.dataTables.min.css">
 </head>
-<body>
+<?php 
+  session_start();
+
+  // echo phpinfo(); exit;
+  if( isset( $_SESSION['optionsPaciente'] ) && $_SESSION['optionsPaciente'] !='' ){
+    $optionsPaciente = $_SESSION['optionsPaciente'];
+    $optionsTerapeuta = $_SESSION['optionsTerapeuta'];
+    	
+  }else{
+    $optionsPaciente="";
+ 	$optionsTerapeuta="";
+  }
+
+?>
+<body onload="getDataConsulta()">
 <div class="container-fluid">
 	<?php include "header.php"; ?>
 	<?php include "menu.php"; ?>
 
 		<div class="col-md-6">
-			<h3>Agregar Consulta</h3>
+			<h3>Agregar Consulta <?php echo date("Y-m-d H:i:s"); ?></h3>
 			<form role="form" id='formPaciente' class="form-inline">
 				<div class="form-group">
-					<label for="nombre">
+					<label for="cmbPacientes">
 						Paciente:
 					</label>
 					<select id='cmbPacientes' class="form-control" style="width:180px;" >
-						
 					</select>
-					<label for="rut" class="">
-						Terapeuta:
+				</div>
+				<div class="form-group">
+					<label for="cmbEspecialidades">
+						Especialidad:
 					</label>
-					<select id='cmbPacientes' class="form-control" style="width:180px;" >
-						
+					<select onchange="getTableConsultas(this.value)" id='cmbEspecialidades' class="form-control" style="width:180px;" >
 					</select>
-				
 				</div>
 
-				<div class="form-group">
-					<label for="apellido" class="top-margin">
-						Apellido:
-					</label>
-					<input class="form-control right-margin" id="apellido" name="apellido" type="text" />
-					<label for="edad" class="top-margin">
-						Edad:
-					</label>
-					<input class="form-control" id="edad" name="edad" type="number" />
-				</div>
-
-				<div class="form-group">
-					<label for="telefono" class="top-margin">
-						Teléfono:
-					</label>
-					<input class="form-control right-margin" id="telefono" name="telefono" type="text" />
-					<label for="email" class="top-margin">
-						Email:
-					</label>
-					<input class="form-control caja-ancha" id="email" name="email" type="email" />
-				</div><br>
-
-				<div class="form-group">
-					<button type="button" onclick="validaFormConsulta();" class="btn btn-primary top-margin">
-						Agregar
-					</button>
-				</div>
-			</form>
+			</form><br>
+			<div id='divTableConsultas'>
+				<table id="TableConsultas" class="table table-bordered table-striped display oculto">
+					<thead>
+						<tr>
+							<th>Terapeuta</th>
+							<th>Especialidad</th>
+							<th>Próx Hora Disponible</th>
+							<th>Agenda</th>	
+							<th>Agenda Completa</th>
+						</tr>
+					</thead>
+					<tbody id='TableConsultasBody'>
+					</tbody>
+				</table>
+			</div>
 			<div id='respuesta'>
 				
 			</div>

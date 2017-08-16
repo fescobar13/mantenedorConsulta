@@ -3,8 +3,9 @@
     <div id="accordion">
       <h3>Consulta</h3>
         <div>
-         <p><a href="../Controllers/ConsultaController.php?request=DatosConsulta">Agregar consulta</a></p>
-         <p><a href="">Listar consulta</a></p>
+         <!-- <p><a href="../Controllers/ConsultaController.php?request=DatosConsulta">Agregar consulta</a></p> -->
+         <p><a href="agregarConsulta.php">Agregar consulta</a></p>
+         <p><a href="listarConsulta.php">Listar consulta</a></p>
         </div>
       <h3>Paciente</h3>
         <div>

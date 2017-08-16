@@ -4,6 +4,7 @@ require_once "../Models/Conexion.php";
 require_once "../Models/Terapeuta.php";
 require_once "../Models/Paciente.php";
 require_once "../Models/Especialidad.php";
+require_once "../Models/Consulta.php";
 session_start();
 
 // $_POST['nombre']="sdfdsfsdfdsf324234234";
@@ -14,59 +15,219 @@ session_start();
 // $_POST['email']="valor por defecto";
 // $_POST['request'] = "agregar";
 
-class TerapeutaController
+class ConsultaController
 {
-	public function converToArray($string){
-		if( strstr($string, ",") ){
-			$arr = explode(",", $string);
-		}else{
-			$arr = array(0=>$string);
+	private $horas;
+
+	public function __construct(){
+		$this->horas = array('08:00',
+							'08:15',
+							'08:30',
+							'08:45',
+							'09:00',
+							'09:15',
+							'09:30',
+							'09:45',
+							'10:00',
+							'10:15',
+							'10:30',
+							'10:45',
+							'11:00',
+							'11:15',
+							'11:30',
+							'11:45',
+							'12:00',
+							'12:15',
+							'12:30',
+							'12:45',
+							'13:00',
+							'13:15',
+							'13:30',
+							'13:45',
+							'14:00',
+							'14:15',
+							'14:30',
+							'14:45',
+							'15:00',
+							'15:15',
+							'15:30',
+							'15:45',
+							'16:00',
+							'16:15',
+							'16:30',
+							'16:45',
+							'17:00',
+							'17:15',
+							'17:30',
+							'17:45',
+							'18:00',
+							'18:15',
+							'18:30',
+							'18:45',
+							'19:00',
+							'19:15',
+							'19:30',
+							'19:45',
+							'20:00',
+							'20:15',
+							'20:30',
+							'20:45',
+							'21:00',
+							'21:15',
+							'21:30',
+							'21:45',
+							'22:00',
+							'22:15',
+							'22:30',
+							'22:45',
+							'23:00',
+							'23:15',
+							'23:30',
+							'23:45'
+							);
+	}
+
+	public function getHtmlEspecialidad( $arrEsp ){
+		$options="<option selected disabled value=''>Seleccione una especialidad</option>";
+		foreach ( $arrEsp as $esp ) {
+			$esp = explode("|", $esp);
+			$options.="<option value='".$esp[0]."'>".$esp[1]."</option>";
 		}
-		return $arr;
+		return $options;
+	}
+
+	// public function getHorasTomadas( $arr ){
+	// 	$horasTomadas=array();
+	// 	foreach ( $arr as $consulta) {
+	// 		$horasTomadas[] = $consulta->get("fecha");
+	// 	}
+	// 	return $horasTomadas;
+	// }
+
+	public function getIdTerapeutasOcupados( $arr ){
+		$idsTerapeutas=array();
+		foreach ( $arr as $consulta) {
+			$idsTerapeutas[] = $consulta->get("id_terapeuta");
+		}
+		return $idsTerapeutas; 
+	}
+
+	public function getIndexHoraActual(){
+		$horaActual = date("H:i");
+		for ($i=0; $i < count($this->horas); $i++) { 
+			if( $horaActual <= $this->horas[$i] ){
+				return $i;
+			}
+		}
 	}
 	
+	public function getHtmlConsultas( $consultasTomadas=0, $terapuetas=0, $idPaciente=0, $idEsp=0 ){
+		// echo "1"; exit;
+		// $horasTomadas = $this->getHorasTomadas($consultasTomadas);
+		$idsTerapeutas = $this->getIdTerapeutasOcupados($consultasTomadas);
+		$indexHora = $this->getIndexHoraActual();
+
+		$html="";
+		$correlativo = 0;
+		for( $i = 0; $i < 30; $i++ ){ //cant dias
+			if( $i == 0 ){
+				$index = $indexHora;
+			}else{
+				$index=0;
+			}
+			for( $j =$index; $j < count($this->horas); $j++ ){//horas 
+				// echo $this->horas[$i]."<..."; exit;
+				for($k =0; $k < count($terapuetas); $k++){//terapuetas 
+					// echo "alooo";exit;
+					$dataTera = explode("|", $terapuetas[$k] );
+					if( !$consultasTomadas ==0 ){
+						$horaActual = date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j];
+
+						if( in_array($dataTera[0], $idsTerapeutas) ){ //tera tiene hora
+							$concidio=false;
+							foreach ( $consultasTomadas as $consulta ) { 
+								if( $dataTera[0] == $consulta->get("id_terapeuta") ){ //encontro tera
+									$horaConsulta = date('Y-m-d h:i', strtotime($consulta->get("fecha")) );
+									if( $horaActual == $horaConsulta ){
+										$concidio=true;
+									}
+								}
+							}
+
+							if( $concidio ){ // coincide la hora, evito que la tomen.
+								continue;
+							}else{
+								$html.="<tr>
+								<td>".$dataTera[1]." ".$dataTera[2]."</td>
+								<td>".$dataTera[3]."</td>
+								<td>".date('d-m-Y', strtotime(date('d-m-Y')." +".$i." days") )." ".$this->horas[$j]."</td>
+								<td><input type='hidden' id='dataConsulta".$correlativo."' 
+								value='".$dataTera[0]."|".
+								date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j]."|".$idPaciente."|".$idEsp."'>
+								<button onclick='reservar(dataConsulta".$correlativo.")' class='btn btn-primary' >Reservar</button></td>
+								<td><button onclick='getAgenda()' class='btn btn-success'>
+								Ver agenda Completa</button></td>
+								</tr>";
+								$correlativo++;
+							}
+													
+						}else{
+							$html.="<tr>
+							<td>".$dataTera[1]." ".$dataTera[2]."</td>
+							<td>".$dataTera[3]."</td>
+							<td>".date('d-m-Y', strtotime(date('d-m-Y')." +".$i." days") )." ".$this->horas[$j]."</td>
+							<td><input type='hidden' id='dataConsulta".$correlativo."' 
+							value='".$dataTera[0]."|".
+							date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j]."|".$idPaciente."|".$idEsp."'>
+							<button onclick='reservar(dataConsulta".$correlativo.")' class='btn btn-primary' >Reservar</button></td>
+							<td><button onclick='getAgenda()' class='btn btn-success'>
+							Ver agenda Completa</button></td>
+							</tr>";
+							$correlativo++;
+						}
+						
+					}else{
+						$html.="<tr>
+						<td>".$dataTera[1]." ".$dataTera[2]."</td>
+						<td>".$dataTera[3]."</td>
+						<td>".date('d-m-Y', strtotime(date('d-m-Y')." +".$i." days") )." ".$this->horas[$j]."</td>
+						<td><input type='hidden' id='dataConsulta".$correlativo."' 
+						value='".$dataTera[0]."|".
+						date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j]."|".$idPaciente."|".$idEsp."'>
+						<button onclick='reservar(dataConsulta".$correlativo.")' class='btn btn-primary' >Reservar</button></td>
+						<td><button onclick='getAgenda()' class='btn btn-success'>
+						Ver agenda Completa</button></td>
+						</tr>";
+						$correlativo++;
+					}
+					
+				}
+			}
+		}
+		return $html;
+	}
+
+
 }
 
 /* POST */
 
 if( isset( $_POST['request'] ) && $_POST['request'] !='' ) {
 	//Clase que valida los datos de la peticion
-	$controller = new TerapeutaController();
+	// $controller = new TerapeutaController();
+	$espObj = new Especialidad();
 
-	if( $_POST['request'] == 'agregar' ){
-		
-		$terapeuta = new Terapeuta();
-		$terapeuta->set("nombre",$_POST['nombre']);
-		$terapeuta->set("edad",$_POST['edad']);
-		$terapeuta->set("apellido",$_POST['apellido']);
-		$terapeuta->set("rut",$_POST['rut']);
-		$terapeuta->set("telefono",$_POST['telefono']);
-		$terapeuta->set("email",$_POST['email']);
-		$especialidad = $controller->converToArray( $_POST['especialidad'] );
-		$terapeuta->set("especialidad", $especialidad );
-
-		$rs = $terapeuta->agregar();
-		
-		if( $rs == 'existe' ){
-			echo "Terapeuta ya existe";
-		}else if($rs == 'agrego'){
-			echo "Se agrego el Terapeuta";
-		}
-
-	}else if( $_POST['request'] == 'listar' ){
-		$terapeuta = new Terapeuta();
-		echo $terapeuta->listar();
-
-	}else if( $_POST['request'] == 'eliminar' ){
+	if( $_POST['request'] == 'eliminar' ){
 		$id = $_POST['id'];
-		$terapeuta = new Terapeuta();
-		$terapeuta->set("id", $id);
-		$rs = $terapeuta->eliminar();
+		$consulta = new Consulta();
+		$consulta->set("id", $id);
+
+		$rs = $consulta->eliminar();
 		if( $rs == 'elimino' ){
-			echo "Terapeuta eliminado";
+			echo "Consulta eliminada";
 
 		}else if( $rs == 'no existe' ){
-			echo "No se encontro el terapeuta";
+			echo "No se encontro";
 		}
 	}else if( $_POST['request'] == 'modificar' ){
 
@@ -88,10 +249,32 @@ if( isset( $_POST['request'] ) && $_POST['request'] !='' ) {
 		}else if( $rs == 'no existe' ){
 			echo "No se encontro terapeuta";
 		}
-	}else if( $_POST['request'] == 'getDatosDisponibles' ){
-		
-	    echo "datos disp";
+
+	}else if( $_POST['request'] == 'getTableConsultas' ){	
+		$idEsp = $_POST['idEspecialidad'];
+		$idPaciente = $_POST['idPaciente'];
+
+		$consObj= new Consulta();
+		$espObj = new Especialidad();
+		$teraObj = new Terapeuta();
+		$terapeutas = $teraObj->getTerapeutas($idEsp);
+
+		$consController = new ConsultaController();
+		// $especialidades = $espObj->getEspecialidadesRaw();
+		$consultasTomadas = $consObj->listar( $idEsp );
+		echo $consController->getHtmlConsultas($consultasTomadas,$terapeutas,$idPaciente,$idEsp);
+
+	}else if( $_POST['request'] == 'reservar' ){	
+		$dataConsulta = $_POST['consulta'];
+		$dataC = explode("|", $dataConsulta);
+		$consObj= new Consulta();
+		echo $consObj->agregar( $dataC[0], $dataC[1], $dataC[2], $dataC[3] );
+
+	}else if( $_POST['request'] == 'listar' ){	
+		$consulta = new Consulta();
+		echo $consulta->listarConsultas();
 	}
+
 }
 
 
@@ -108,33 +291,11 @@ if( isset($_GET['request'] ) && $_GET['request'] != '' ){
 		header("Location:../Views/modificarTerapeuta.php");
 
 	}else if( $_GET['request'] == 'DatosConsulta' ){
-		//Data Paciente
-		$Paciente = new Paciente();
-	    $pacientes = $Paciente->getPacientes();
-	    $optionsPaciente ="<option value='' disabled selected>Seleccione un Paciente</option>";
-	    foreach ( $pacientes as $paciente ) {
-	    	$paciente = explode("|", $paciente); 
-	    	$optionsPaciente .= 
-	    	"<option 
-	    	value='".$paciente[0]."'>".$paciente[1]." ".$paciente[2]." ".$paciente[3]."</option>";
-	    }
+		$especialidad = new Especialidad();
+		echo $especialidad->getEspecialidades("encabezado");
 
-		$_SESSION['optionsPaciente'] = $optionsPaciente;
 
-		//Data Terapeuta
-		$Terapeuta = new Terapeuta();
-	    $terapeutas = $Terapeuta->getTerapeutas();
-	    $optionsTerapeuta ="<option value='' disabled selected>Seleccione un Terapeuta</option>";
-	    foreach ( $terapeutas as $terapeuta ) {
-	    	$terapeuta = explode("|", $terapeuta); 
-	    	$optionsTerapeuta.= 
-	    	"<option 
-	    	value='".$terapeuta[0]."'>".$terapeuta[1]." ".$terapeuta[2]." ".$terapeuta[3]."</option>";
-	    }
-
-		$_SESSION['optionsTerapeuta'] = $optionsTerapeuta;
-
-		header("Location:../Views/modificarTerapeuta.php");
+		
 	}
 }
 

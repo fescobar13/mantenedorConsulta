@@ -23,6 +23,13 @@ class TerapeutaController
 		}
 		return $arr;
 	}
+
+	public function getHtmlConsultas($arr){
+		$html="";
+		foreach ($arr as $key => $value) {
+			$html.="";
+		}
+	}
 	
 }
 
@@ -89,7 +96,18 @@ if( isset( $_POST['request'] ) && $_POST['request'] !='' ) {
 		}
 	}else if( $_POST['request'] == 'getEspecialidades' ){
 		$especialidad = new Especialidad();
-		echo $especialidad->getEspecialidades();
+		$tipo='';
+		if( isset($_POST['tipo']) && $_POST['tipo'] !=''){
+			$tipo= $_POST['tipo'];
+		}
+		
+		echo $especialidad->getEspecialidades($tipo);
+
+	}else if( $_POST['request'] == 'getTableConsultas' ){
+		$especialidad = $_POST['especialidad'];
+		
+
+		$horasDisponibles="";
 	}
 }
 

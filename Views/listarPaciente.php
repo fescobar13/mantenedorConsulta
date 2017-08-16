@@ -21,7 +21,7 @@
 <div class="container-fluid">
 	<?php include "header.php"; ?>
 	<?php include "menu.php"; ?>
-
+	<div class="row">
 		<div class="col-md-7">
 			<h3>Listado de Pacientes</h3>
 			<table class="table table-bordered table-striped display" id="pacienteTable">
@@ -41,6 +41,13 @@
 			</table>
 			<div id='respuesta'>
 				
+			</div>
+				
+			<div id="eliminado" title="Aviso">
+			  
+			</div>
+			<div id="confirmacion" title="Confirmación">
+			  
 			</div>
 		</div>
 	</div>

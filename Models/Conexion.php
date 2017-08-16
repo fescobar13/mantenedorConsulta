@@ -4,7 +4,7 @@
 */
 class Conexion 
 {
-	private $conn;
+	private $connMysql;
 
 	public function __construct()
 	{
