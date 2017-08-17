@@ -127,6 +127,13 @@ class ConsultaController
 		$idsTerapeutas = $this->getIdTerapeutasOcupados($consultasTomadas);
 		$indexHora = $this->getIndexHoraActual();
 
+		/* Agenda Completa*/
+
+		// <!--<td><button onclick='getAgenda(dataConsulta".$correlativo.")' class='btn btn-success'>
+		//  Ver agenda Completa</button></td>-->
+
+		/* Agenda Completa*/
+
 		$html="";
 		$correlativo = 0;
 		for( $i = 0; $i < 30; $i++ ){ //cant dias
@@ -167,8 +174,7 @@ class ConsultaController
 								value='".$dataTera[0]."|".
 								date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j]."|".$idPaciente."|".$idEsp."'>
 								<button onclick='reservar(dataConsulta".$correlativo.")' class='btn btn-primary' >Reservar</button></td>
-								<td><button onclick='getAgenda()' class='btn btn-success'>
-								Ver agenda Completa</button></td>
+								
 								</tr>";
 								$correlativo++;
 							}
@@ -182,8 +188,7 @@ class ConsultaController
 							value='".$dataTera[0]."|".
 							date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j]."|".$idPaciente."|".$idEsp."'>
 							<button onclick='reservar(dataConsulta".$correlativo.")' class='btn btn-primary' >Reservar</button></td>
-							<td><button onclick='getAgenda()' class='btn btn-success'>
-							Ver agenda Completa</button></td>
+							
 							</tr>";
 							$correlativo++;
 						}
@@ -197,8 +202,7 @@ class ConsultaController
 						value='".$dataTera[0]."|".
 						date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j]."|".$idPaciente."|".$idEsp."'>
 						<button onclick='reservar(dataConsulta".$correlativo.")' class='btn btn-primary' >Reservar</button></td>
-						<td><button onclick='getAgenda()' class='btn btn-success'>
-						Ver agenda Completa</button></td>
+						
 						</tr>";
 						$correlativo++;
 					}

@@ -186,7 +186,7 @@ class Consulta
       $apeTerapeuta= $dataTerapeuta['apellido'];
 
       $html.="<tr>
-          <td>".$row['fecha']."</td>
+          <td>".date("d-m-Y H:i", strtotime( $row['fecha'] ) )."</td>
           <td>".$nomPaciente." ".$apePaciente."</td>
           <td>".$nomTerapeuta." ".$apeTerapeuta."</td>
           <td>".$this->getEspecialidad( $row['id_especialidad'] )."</td>

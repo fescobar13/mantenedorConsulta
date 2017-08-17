@@ -68,7 +68,6 @@
 							<th>Especialidad</th>
 							<th>Próx Hora Disponible</th>
 							<th>Agenda</th>	
-							<th>Agenda Completa</th>
 						</tr>
 					</thead>
 					<tbody id='TableConsultasBody'>
