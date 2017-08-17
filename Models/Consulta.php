@@ -147,17 +147,23 @@ class Consulta
   }
 
   private function getPaciente($id=0){
-    $sql ="SELECT nombre from pacientes where estado=1 and id =".$id."";
+    $sql ="SELECT nombre, apellido from pacientes where estado=1 and id =".$id."";
     $datos = self::$conn->muestra( $sql );
     $row = $datos->fetch_array(MYSQLI_ASSOC);
-    return $row['nombre']; 
+    $data=array();
+    $data['nombre'] = $row['nombre'];
+    $data['apellido'] = $row['apellido'];
+    return $data; 
   }
 
   private function getTerapeuta($id=0){
-    $sql ="SELECT nombre from terapeutas where estado=1 and id =".$id."";
+    $sql ="SELECT nombre, apellido from terapeutas where estado=1 and id =".$id."";
     $datos = self::$conn->muestra( $sql );
     $row = $datos->fetch_array(MYSQLI_ASSOC);
-    return $row['nombre'];
+    $data=array();
+    $data['nombre'] = $row['nombre'];
+    $data['apellido'] = $row['apellido'];
+    return $data; 
   }
 
   private function getEspecialidad($id=0){
@@ -172,10 +178,17 @@ class Consulta
     $html="";
 
     while( $row = $datos->fetch_array(MYSQLI_ASSOC) ){
+      $dataPaciente = $this->getPaciente( $row['id_paciente'] );
+      $dataTerapeuta = $this->getTerapeuta( $row['id_terapeuta'] );
+      $nomPaciente= $dataPaciente['nombre'] ? $dataPaciente['nombre'] : "<span>Sin Paciente</span>";
+      $apePaciente= $dataPaciente['apellido'];
+      $nomTerapeuta= $dataTerapeuta['nombre'] ? $dataTerapeuta['nombre'] : "<span style=color>Sin Terapeuta</span>";
+      $apeTerapeuta= $dataTerapeuta['apellido'];
+
       $html.="<tr>
           <td>".$row['fecha']."</td>
-          <td>".$this->getPaciente( $row['id_paciente'] )."</td>
-          <td>".$this->getTerapeuta( $row['id_terapeuta'] )."</td>
+          <td>".$nomPaciente." ".$apePaciente."</td>
+          <td>".$nomTerapeuta." ".$apeTerapeuta."</td>
           <td>".$this->getEspecialidad( $row['id_especialidad'] )."</td>
           <td>
             <p>

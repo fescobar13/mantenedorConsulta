@@ -143,18 +143,20 @@ class ConsultaController
 					if( !$consultasTomadas ==0 ){
 						$horaActual = date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j];
 
-						if( in_array($dataTera[0], $idsTerapeutas) ){ //tera tiene hora
-							$concidio=false;
+						if( in_array( $dataTera[0], $idsTerapeutas ) ){ //tera tiene hora
+							$coincidio=false;
 							foreach ( $consultasTomadas as $consulta ) { 
 								if( $dataTera[0] == $consulta->get("id_terapeuta") ){ //encontro tera
-									$horaConsulta = date('Y-m-d h:i', strtotime($consulta->get("fecha")) );
+									$horaConsulta = date('Y-m-d H:i', strtotime($consulta->get("fecha")) );
+									// echo "actual->>>".$horaActual."<br>";
+									// echo "consulta->>>".$horaConsulta."<br><br>";
 									if( $horaActual == $horaConsulta ){
-										$concidio=true;
+										$coincidio=true;
 									}
 								}
 							}
 
-							if( $concidio ){ // coincide la hora, evito que la tomen.
+							if( $coincidio ){ // coincide la hora, evito que la tomen.
 								continue;
 							}else{
 								$html.="<tr>

@@ -40,14 +40,10 @@
 				</tbody>
 			</table>
 			<div id='respuesta'>
-				
 			</div>
-				
-			<div id="eliminado" title="Aviso">
-			  
-			</div>
+			<!-- <div id="eliminado" title="Aviso">
+			</div> -->
 			<div id="confirmacion" title="Confirmación">
-			  
 			</div>
 		</div>
 	</div>

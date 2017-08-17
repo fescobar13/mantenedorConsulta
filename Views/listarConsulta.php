@@ -23,7 +23,7 @@
 	<?php include "menu.php"; ?>
 
 		<div class="col-md-7">
-			<h3>Listado de Pacientes</h3>
+			<h3>Listado de Consultas</h3>
 			<table class="table table-bordered table-striped display" id="consultaTable">
 				<thead>
 					<tr>
@@ -38,13 +38,10 @@
 				</tbody>
 			</table>
 			<div id='respuesta'>
-				
 			</div>
-			<div id="eliminado" title="Aviso">
-			  
-			</div>
+			<!-- <div id="eliminado" title="Aviso">
+			</div> -->
 			<div id="confirmacion" title="Confirmación">
-			  
 			</div>
 		</div>
 	</div>

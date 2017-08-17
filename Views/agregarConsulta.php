@@ -34,9 +34,10 @@
 <div class="container-fluid">
 	<?php include "header.php"; ?>
 	<?php include "menu.php"; ?>
-
+	<div class="row">
 		<div class="col-md-6">
 			<h3>Agregar Consulta <?php echo date("Y-m-d H:i:s"); ?></h3>
+			
 			<form role="form" id='formPaciente' class="form-inline">
 				<div class="form-group">
 					<label for="cmbPacientes">
@@ -52,8 +53,13 @@
 					<select onchange="getTableConsultas(this.value)" id='cmbEspecialidades' class="form-control" style="width:180px;" >
 					</select>
 				</div>
+				<div class="form-group">
+				<a  class="btn btn-primary" href="agregarConsulta.php">Reestablecer</a>
+				</div>
 
 			</form><br>
+			<div id='waiting'>
+			</div>
 			<div id='divTableConsultas'>
 				<table id="TableConsultas" class="table table-bordered table-striped display oculto">
 					<thead>
@@ -70,7 +76,10 @@
 				</table>
 			</div>
 			<div id='respuesta'>
-				
+			</div>
+			<div id="reservado" title="Aviso">
+			</div>
+			<div id="existe" title="Aviso">
 			</div>
 		</div>
 	</div>

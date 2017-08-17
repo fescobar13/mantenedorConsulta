@@ -115,18 +115,18 @@ function eliminarPaciente(id){
             type:'post',
             success: function(resp){
                 if( resp.indexOf("Paciente eliminado") > "-1" ){ // elimino correctamente
-                    document.getElementById("eliminado").innerHTML="<p>Paciente Eliminado!.</p>";
-                    // $( "#eliminado" ).dialog();
-                    $( "#eliminado" ).dialog({
-                      modal: true,
-                      buttons: {
-                        Ok: function() {
-                          $( this ).dialog( "close" );
-                           window.location='listarPaciente.php';
-                        }
-                      }
-                    });
-                   
+                    window.location='listarPaciente.php';
+                    // document.getElementById("eliminado").innerHTML="<p>Paciente Eliminado!.</p>";
+                    // // $( "#eliminado" ).dialog();
+                    // $( "#eliminado" ).dialog({
+                    //   modal: true,
+                    //   buttons: {
+                    //     Ok: function() {
+                    //       $( this ).dialog( "close" );
+                          
+                    //     }
+                    //   }
+                    // });
                 }else if( resp.indexOf("No se encontro") > "-1" ){
                     alert("No se encontro el paciente");
                 }
@@ -154,8 +154,11 @@ function listarPaciente(){
         success: function(resp){
             document.getElementById("pacienteBody").innerHTML = resp;
             $('#pacienteTable').DataTable({
+                destroy:true,
+                pageLength: 5,
                 language:espanol,
-                destroy:true
+                ordering:true,
+                paging:true
             }); 
         },
         error: function(resp){
@@ -256,25 +259,41 @@ function getEspecialidadeSimple(){
 
 function getTableConsultas(id){
     var idPaciente = document.getElementById("cmbPacientes").value;
-
+    // $('#TableConsultas').DataTable().destroy();
     $.ajax({
         data:"request=getTableConsultas&idEspecialidad="+id+"&idPaciente="+idPaciente,
         url: '../Controllers/ConsultaController.php',
         type:'post',
+        beforeSend: function(){
+            document.getElementById("waiting").innerHTML = "<img src='../vendor/img/animal.gif' alt='esperando'>";         
+        },
         success: function(resp){
             // alert(resp);
+            document.getElementById("waiting").style.display='none';
             document.getElementById("TableConsultas").style.display = "inline";
-            document.getElementById("TableConsultasBody").innerHTML=resp;
+            document.getElementById("TableConsultasBody").innerHTML = resp;
+            // $('#TableConsultas').DataTable().destroy();
             $('#TableConsultas').DataTable({
-                "drawCallback": function() {
-                    // document.getElementById("TableConsultasBody").innerHTML='';
-                    document.getElementById("TableConsultasBody").innerHTML=resp;
-                    // alert( 'DataTables has redrawn the table' );
-                },
-                language:espanol,
-                paging:true,
-                dom:'flrtip',
                 destroy:true,
+                pageLength: 5,
+                language:espanol,
+                ordering:false,
+                paging:true
+                // "drawCallback": function(settings) {
+                //     // document.getElementById("TableConsultasBody").innerHTML=' ';
+                //     document.getElementById("TableConsultasBody").innerHTML=resp;
+                //     // alert( 'DataTables has redrawn the table' );
+                // },
+               
+                // columns: [
+                // { data: 'Terapeuta'}, 
+                // { data: 'Especialidad'},
+                // { data: 'Próx Hora Disponible'},
+                // { defaultContent: 'Agenda'},
+                // { defaultContent: 'Agenda Completa'}
+                
+                // ]
+                // dom: 'lfrtip'
             }); 
            
         },
@@ -283,6 +302,44 @@ function getTableConsultas(id){
         }
     });
 }
+
+
+// function onChangeTableConsultas(id){
+//     var idPaciente = document.getElementById("cmbPacientes").value;
+//     document.getElementById("TableConsultasBody").innerHTML ='';
+//     $.ajax({
+//         data:"request=getTableConsultas&idEspecialidad="+id+"&idPaciente="+idPaciente,
+//         url: '../Controllers/ConsultaController.php',
+//         type:'post',
+//         success: function(resp){
+//             console.log(resp);
+//             // alert(resp);
+//             // if( document.getElementById("TableConsultas").style.display != 'inline' ){
+//             // }
+//             document.getElementById("TableConsultas").style.display = "inline";
+//             document.getElementById("TableConsultasBody").innerHTML = resp;
+//             //$('#TableConsultas').DataTable().destroy();
+//             // $('#TableConsultas').DataTable({
+//             //     destroy:true,
+//             //     // "drawCallback": function(settings) {
+//             //     //     // document.getElementById("TableConsultasBody").innerHTML=' ';
+//             //     //     document.getElementById("TableConsultasBody").innerHTML=resp;
+//             //     //     // alert( 'DataTables has redrawn the table' );
+//             //     // },
+//             //     pageLength: 5,
+//             //     language:espanol,
+//             //     ordering:false,
+//             //     paging:true,
+//             //     // dom: 'lfrtip'
+//             // }); 
+           
+//         },
+//         error: function(resp){
+//             alert(resp);
+//         }
+//     });
+// }
+
 
 
 function validaFormTerapeuta(tipoPeticion=''){
@@ -362,18 +419,20 @@ function eliminarTerapeuta(id){
             url: '../Controllers/TerapeutaController.php',
             type:'post',
             success: function(resp){
+
                 if( resp.indexOf("Terapeuta eliminado") > "-1" ){ // elimino correctamente
-                    document.getElementById("eliminado").innerHTML="<p>Terapeuta Eliminado!.</p>";
-                    // $( "#eliminado" ).dialog();
-                    $( "#eliminado" ).dialog({
-                      modal: true,
-                      buttons: {
-                        Ok: function() {
-                          $( this ).dialog( "close" );
-                           window.location='listarTerapeuta.php';
-                        }
-                      }
-                    });
+                    window.location='listarTerapeuta.php';
+                    // document.getElementById("eliminado").innerHTML="<p>Terapeuta Eliminado!.</p>";
+                    // // $( "#eliminado" ).dialog();
+                    // $( "#eliminado" ).dialog({
+                    //   modal: true,
+                    //   buttons: {
+                    //     Ok: function() {
+                    //       $( this ).dialog( "close" );
+                           
+                    //     }
+                    //   }
+                    // });
                    
                 }else if( resp.indexOf("No se encontro") > "-1" ){
                     alert("No se encontro el terapeuta");
@@ -394,7 +453,6 @@ function eliminarTerapeuta(id){
 
 
 function listarTerapeuta(){ 
-
     $.ajax({
         data:"request=listar",
 
@@ -404,8 +462,11 @@ function listarTerapeuta(){
             // alert(resp);
             document.getElementById("terapeutaBody").innerHTML = resp;
             $('#terapeutaTable').DataTable({
+                destroy:true,
+                pageLength: 5,
                 language:espanol,
-                destroy:true
+                ordering:true,
+                paging:true
             }); 
         },
         error: function(resp){
@@ -479,13 +540,34 @@ function reservar(dataHora){
 
         url: '../Controllers/ConsultaController.php',
         type:'post',
+        
         success: function(resp){
             // alert(resp);
+            
             if(resp.trim()=='agrego'){
-                alert( "Su consulta fue agregada exitosamente!" );
-                getTableConsultas(valEsp);
+
+                document.getElementById("reservado").innerHTML="<p>Su consulta fue agregada exitosamente!.</p>";
+                $( "#reservado" ).dialog({
+                    modal: true,
+                    buttons: {
+                        Ok: function() {
+                          $( this ).dialog( "close" );
+                           // window.location='listarConsulta.php';
+                        }
+                    }
+                });
+                // getTableConsultas(valEsp);
             }else if( resp.trim()=='existe' ){
-                alert( "Ya existe una consulta tomada en ese horario!" );
+                document.getElementById("existe").innerHTML="<p>Ya existe una consulta tomada en ese horario!</p>";
+                $( "#existe" ).dialog({
+                    modal: true,
+                    buttons: {
+                        Ok: function() {
+                          $( this ).dialog( "close" );
+                           // window.location='listarConsulta.php';
+                        }
+                    }
+                });
             }
             // document.getElementById("cmbPacientes").innerHTML=resp;
             //  $("#cmbPacientes").chosen({
@@ -508,8 +590,11 @@ function listarConsulta(){
             // alert(resp);
             document.getElementById("consultaBody").innerHTML = resp;
             $('#consultaTable').DataTable({
+                destroy:true,
+                pageLength: 5,
                 language:espanol,
-                destroy:true
+                ordering:true,
+                paging:true
             }); 
         },
         error: function(resp){
@@ -535,17 +620,18 @@ function eliminarConsulta(id){
             type:'post',
             success: function(resp){
                 if( resp.indexOf("Consulta eliminada") > "-1" ){ // elimino correctamente
-                    document.getElementById("eliminado").innerHTML="<p>Consulta Eliminada!.</p>";
+                    window.location='listarConsulta.php';
+                    // document.getElementById("eliminado").innerHTML="<p>Consulta Eliminada!.</p>";
                     // $( "#eliminado" ).dialog();
-                    $( "#eliminado" ).dialog({
-                      modal: true,
-                      buttons: {
-                        Ok: function() {
-                          $( this ).dialog( "close" );
-                           window.location='listarConsulta.php';
-                        }
-                      }
-                    });
+                    // $( "#eliminado" ).dialog({
+                    //   modal: true,
+                    //   buttons: {
+                    //     Ok: function() {
+                    //       $( this ).dialog( "close" );
+                    //        window.location='listarConsulta.php';
+                    //     }
+                    //   }
+                    // });
                    
                 }else if( resp.indexOf("No se encontro") > "-1" ){
                     alert("No se encontro la consulta");
