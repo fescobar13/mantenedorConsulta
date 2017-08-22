@@ -33,8 +33,9 @@
 <body onload="getDataConsulta()">
 <div class="container-fluid">
 	<?php include "header.php"; ?>
-	<?php include "menu.php"; ?>
 	<div class="row">
+	<?php include "menu.php"; ?>
+	
 		<div class="col-md-6">
 			<h3>Agregar Consulta <?php echo date("Y-m-d H:i:s"); ?></h3>
 			
@@ -54,31 +55,37 @@
 					</select>
 				</div>
 				<div class="form-group">
-				<a  class="btn btn-primary" href="agregarConsulta.php">Reestablecer</a>
+				<a class="btn btn-primary" href="agregarConsulta.php">Reestablecer</a>
 				</div>
 
-			</form><br>
-			<div id='waiting'>
-			</div>
-			<div id='divTableConsultas'>
-				<table id="TableConsultas" class="table table-bordered table-striped display oculto">
-					<thead>
-						<tr>
-							<th>Terapeuta</th>
-							<th>Especialidad</th>
-							<th>Próx Hora Disponible</th>
-							<th>Agenda</th>	
-						</tr>
-					</thead>
-					<tbody id='TableConsultasBody'>
-					</tbody>
-				</table>
-			</div>
-			<div id='respuesta'>
-			</div>
-			<div id="reservado" title="Aviso">
-			</div>
-			<div id="existe" title="Aviso">
+			</form><br><br>
+		</div>
+	</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-5">
+				<div id='waiting'>
+				</div>
+				<div id='divTableConsultas'>
+					<table id="TableConsultas" class="table table-bordered table-striped display oculto">
+						<thead>
+							<tr>
+								<th>Terapeuta</th>
+								<th>Especialidad</th>
+								<th>Próx Hora Disponible</th>
+								<th>Agenda</th>	
+							</tr>
+						</thead>
+						<tbody id='TableConsultasBody'>
+						</tbody>
+					</table>
+				</div>
+				<div id='respuesta'>
+				</div>
+				<div id="reservado" title="Aviso">
+				</div>
+				<div id="existe" title="Aviso">
+				</div>
 			</div>
 		</div>
 	</div>

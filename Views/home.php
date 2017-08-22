@@ -22,7 +22,7 @@
         <div class="col-md-12">
           <div class="page-header">
               <h1>
-                  <a href="#">Terapias <small>Interfaz de administración</small></a> 
+                  <a href="#"><small>Interfaz de administración</small></a> 
               </h1>
           </div>
         </div>  
