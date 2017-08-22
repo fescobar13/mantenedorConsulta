@@ -128,10 +128,8 @@ class ConsultaController
 		$indexHora = $this->getIndexHoraActual();
 
 		/* Agenda Completa*/
-
 		// <!--<td><button onclick='getAgenda(dataConsulta".$correlativo.")' class='btn btn-success'>
 		//  Ver agenda Completa</button></td>-->
-
 		//Link Agenda Completa
 
 		/* Agenda Completa*/
@@ -193,8 +191,7 @@ class ConsultaController
 							value='".$dataTera[0]."|".
 							date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j]."|".$idPaciente."|".$idEsp."'>
 							<button onclick='reservar(dataConsulta".$correlativo.")' class='btn btn-primary' >Reservar</button></td>
-							<td><button onclick='getAgenda(dataConsulta".$correlativo.")' class='btn btn-success'>
-		  							Ver agenda Completa</button></td>
+							<td><a href='../Controllers/ConsultaController.php?request=agendaCompleta&idTerapeuta=".$dataTera[0]."&fecha=".date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j]."&idPaciente=".$idPaciente."&idEspecialidad=".$idEsp."' class='btn btn-success'>Ver agenda Completa</a></td>
 							
 							</tr>";
 							$correlativo++;
@@ -209,8 +206,7 @@ class ConsultaController
 						value='".$dataTera[0]."|".
 						date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j]."|".$idPaciente."|".$idEsp."'>
 						<button onclick='reservar(dataConsulta".$correlativo.")' class='btn btn-primary' >Reservar</button></td>
-						<td><button onclick='getAgenda(dataConsulta".$correlativo.")' class='btn btn-success'>
-		  							Ver agenda Completa</button></td>
+						<td><a href='../Controllers/ConsultaController.php?request=agendaCompleta&idTerapeuta=".$dataTera[0]."&fecha=".date('Y-m-d', strtotime(date('Y-m-d')." +".$i." days") )." ".$this->horas[$j]."&idPaciente=".$idPaciente."&idEspecialidad=".$idEsp."' class='btn btn-success'>Ver agenda Completa</a></td>
 						
 						</tr>";
 						$correlativo++;
@@ -314,6 +310,7 @@ if( isset($_GET['request'] ) && $_GET['request'] != '' ){
 		$idPaciente = $_GET['idPaciente'];
 		$fecha = $_GET['fecha'];
 		$idTerapeuta = $_GET['idTerapeuta'];
+		
 		// echo "$idTerapeuta -- $fecha -- $idPaciente -- $idEspecialidad";
 
 	}
