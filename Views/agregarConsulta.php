@@ -19,6 +19,7 @@
 <?php 
   session_start();
 
+  unset($_SESSION['fechaCalendario']);
   // echo phpinfo(); exit;
   if( isset( $_SESSION['optionsPaciente'] ) && $_SESSION['optionsPaciente'] !='' ){
     $optionsPaciente = $_SESSION['optionsPaciente'];
@@ -37,8 +38,8 @@
 	<?php include "menu.php"; ?>
 	
 		<div class="col-md-6">
-			<h3>Agregar Consulta <?php echo date("Y-m-d H:i:s"); ?></h3>
-			
+			<h3>Agregar Consulta </h3>
+		
 			<form role="form" id='formPaciente' class="form-inline">
 				<div class="form-group">
 					<label for="cmbPacientes">

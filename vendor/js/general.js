@@ -482,7 +482,7 @@ function getDatosDisponibles(){
 function reservar(dataHora){
     // alert(dataHora.value);
     var dataConsulta = dataHora.value;
-    var valEsp = document.getElementById("cmbEspecialidades").value; 
+    // var valEsp = document.getElementById("cmbEspecialidades").value; 
     $.ajax({
         data:"request=reservar&consulta="+dataConsulta,
 

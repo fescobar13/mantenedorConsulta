@@ -23,15 +23,8 @@ class TerapeutaController
 		}
 		return $arr;
 	}
-
-	public function getHtmlConsultas($arr){
-		$html="";
-		foreach ($arr as $key => $value) {
-			$html.="";
-		}
-	}
-	
 }
+
 
 /* POST */
 
@@ -40,7 +33,6 @@ if( isset( $_POST['request'] ) && $_POST['request'] !='' ) {
 	$controller = new TerapeutaController();
 
 	if( $_POST['request'] == 'agregar' ){
-		
 		$terapeuta = new Terapeuta();
 		$terapeuta->set("nombre",$_POST['nombre']);
 		$terapeuta->set("edad",$_POST['edad']);

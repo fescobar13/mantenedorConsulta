@@ -120,6 +120,66 @@ class ConsultaController
 			}
 		}
 	}
+
+	public function getHtmlAgendaCompleta( $consultasTomadas=0 ,$terapueta=0,$idPaciente=0,$idEsp=0, $fecha=0, $desdeCalendario=false) {
+		$html="";
+		$correlativo = 0;
+		// echo $fecha."<--";exit;
+		// print_r($terapueta); exit;
+		if( $desdeCalendario ){
+			$fechaConsulta = $fecha;
+			$fechaVista = $fecha;
+			if( $fecha == date("Y-m-d") ){
+				$index = $this->getIndexHoraActual();
+			}else{
+				$index = 0;
+			}
+		}else{
+			$index = $this->getIndexHoraActual();
+			$fechaConsulta = date('Y-m-d');
+			$fechaVista = date('d-m-Y');
+		}
+
+		$paciObj = new Paciente();
+		$dataPaciente = $paciObj->getPaciente( $idPaciente );
+		// print_r($dataPaciente); exit;
+		$dataPaciente = explode("|", $dataPaciente[0]);
+
+		$dataTera = explode("|", $terapueta[0] );
+		$i=0;
+		for( $j =$index; $j < count($this->horas); $j++ ){//horas 
+			$horaActual = date('Y-m-d', strtotime( $fechaConsulta ) )." ".$this->horas[$j];
+			// echo $horaActual; exit;
+			$coincidio=false;
+			foreach ( $consultasTomadas as $consulta ) { 
+				if( $dataTera[0] == $consulta->get("id_terapeuta") ){ //encontro tera
+					$horaConsulta = date('Y-m-d H:i', strtotime($consulta->get("fecha")) );
+					// echo "actual->>>".$horaActual."<br>";
+					// echo "consulta->>>".$horaConsulta."<br><br>";
+					if( $horaActual == $horaConsulta ){
+						$coincidio=true;
+					}
+				}
+			}
+
+			if( $coincidio ){ // coincide la hora, evito que la tomen.
+				continue;
+			}else{
+				$html.="<tr>
+				<td>".$dataTera[1]." ".$dataTera[2]."</td>
+				<td>".$dataTera[3]."</td>
+				<td>".$dataPaciente[1]." ".$dataPaciente[2]."</td>
+				<td>".date('d-m-Y', strtotime( $fechaVista." +".$i." days") )." ".$this->horas[$j]."</td>
+				<td><input type='hidden' id='dataConsulta".$correlativo."' 
+				value='".$dataTera[0]."|".
+				date('Y-m-d', strtotime( $fechaConsulta." +".$i." days") )." ".$this->horas[$j]."|".$idPaciente."|".$idEsp."'>
+				<button onclick='reservar(dataConsulta".$correlativo.")' class='btn btn-primary' >Reservar</button></td>
+				</tr>";
+				$correlativo++;
+			}
+		}
+		return $html;
+	}
 	
 	public function getHtmlConsultas( $consultasTomadas=0, $terapuetas=0, $idPaciente=0, $idEsp=0 ){
 		// echo "1"; exit;
@@ -273,7 +333,7 @@ if( isset( $_POST['request'] ) && $_POST['request'] !='' ) {
 		$consController = new ConsultaController();
 		// $especialidades = $espObj->getEspecialidadesRaw();
 		$consultasTomadas = $consObj->listar( $idEsp );
-		echo $consController->getHtmlConsultas($consultasTomadas,$terapeutas,$idPaciente,$idEsp);
+		echo $consController->getHtmlConsultas( $consultasTomadas,$terapeutas,$idPaciente,$idEsp );
 
 	}else if( $_POST['request'] == 'reservar' ){	
 		$dataConsulta = $_POST['consulta'];
@@ -306,15 +366,52 @@ if( isset($_GET['request'] ) && $_GET['request'] != '' ){
 		echo $especialidad->getEspecialidades("encabezado");
 		
 	}else if( $_GET['request'] == 'agendaCompleta' ){
-		$idEspecialidad = $_GET['idEspecialidad'];
+		$idEsp = $_GET['idEspecialidad'];
 		$idPaciente = $_GET['idPaciente'];
 		$fecha = $_GET['fecha'];
 		$idTerapeuta = $_GET['idTerapeuta'];
+
+		$consController = new ConsultaController();
+		$consObj= new Consulta();
+		$teraObj = new Terapeuta();
+
+		$consultasTomadas = $consObj->listar( $idEsp );
+		$terapeuta = $teraObj->getTerapeuta( $idTerapeuta, $idEsp );
+
+		$dataConsultas =  $consController->getHtmlAgendaCompleta( $consultasTomadas, $terapeuta, $idPaciente, $idEsp, $fecha );
+
+		$_SESSION['dataAgendaCompleta'] = $dataConsultas;
+		header("Location:../Views/agendaCompleta.php");
 		
-		// echo "$idTerapeuta -- $fecha -- $idPaciente -- $idEspecialidad";
+	}else if( $_GET['request'] == 'dataCalendario' ){
+		$dataConsulta = $_GET['dataConsulta'];
+
+		$dataConsulta = explode("|", $dataConsulta );
+		// 7|2017-08-23 15:00|4|2 
+		// echo $dataConsulta[1]; exit;
+
+		$consController = new ConsultaController();
+		$consObj= new Consulta();
+		$teraObj = new Terapeuta();
+		$consultasTomadas = $consObj->listar( $dataConsulta[3] );
+		$terapeuta = $teraObj->getTerapeuta( $dataConsulta[0], $dataConsulta[3] );
+		$dataConsultas =  
+		$consController->getHtmlAgendaCompleta(
+						$consultasTomadas,
+						$terapeuta, 
+						$dataConsulta[2], 
+						$dataConsulta[3], 
+						$dataConsulta[1],true);
+
+		$_SESSION['dataAgendaCompleta'] = $dataConsultas;
+		$_SESSION['fechaCalendario'] = $dataConsulta[1];
+
+		header("Location:../Views/agendaCompleta.php");
 
 	}
 }
 
 ?>
+
+
 

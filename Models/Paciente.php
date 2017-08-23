@@ -167,6 +167,17 @@ class Paciente
     return $pacientes; 
   }
 
+  public function getPaciente( $id=0 ){
+    $sql ="SELECT * from pacientes where estado=1 and id=".$id."";
+
+    $result = self::$conn->muestra($sql);
+    $terapuetas=array();
+    while( $row = $result->fetch_array(MYSQLI_ASSOC) ){
+      $paciente[] = $row['id']."|".$row['nombre']."|".$row['apellido'];
+    }
+    return $paciente; 
+  }
+
   private function htmlModificaForm($datos){
     $html="";
     while( $row = $datos->fetch_array(MYSQLI_ASSOC) ){

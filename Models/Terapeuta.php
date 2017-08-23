@@ -67,6 +67,20 @@ class Terapeuta
     return $terapuetas; 
   }
 
+  public function getTerapeuta( $idTera=0, $idEsp=0 ){
+    $sql ="SELECT a.nombre,a.apellido,a.id from terapeutas a inner join 
+          terapeuta_especialidad b on a.id=b.id_terapeuta 
+          where a.estado =1 and b.id_especialidad=".$idEsp." and a.id=".$idTera."";
+
+    $result = self::$conn->muestra($sql);
+    $terapuetas=array();
+    while( $row = $result->fetch_array(MYSQLI_ASSOC) ){
+      $especialidad = $this->getEspecialidad($idEsp);
+      $terapueta[] = $row['id']."|".$row['nombre']."|".$row['apellido']."|".$especialidad;
+    }
+    return $terapueta; 
+  }
+
   private function ActualizarTerapeutaEspecialidad(){
     $sql = "DELETE from terapeuta_especialidad 
             where id_terapeuta=".$this->id." and estado=1";
